@@ -82,4 +82,4 @@ mean(ping_gentoo$body_mass_g)
 Notemos que los pinguinos de especie `Gentoo` de media tienen mas masa corporal que las otras dos especies.
 
 
-PINGUIPINGUI
+PINGUIPINGUI3333333333333333
