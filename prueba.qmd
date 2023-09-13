@@ -1,28 +1,87 @@
 ---
-title: "Untitled"
+title: "Entrega 1: Pingüinos"
+author: "Irene LiFeng Julià Pérez y Xisco Ribera Ramis"
 format: html
+toc: true
 editor: visual
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-pinguinos
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
 ```{r}
-1 + 1
+library(palmerpenguins)
+datos <- penguins
+head(datos)
 ```
 
-You can add options to executable code like this
+*Con lo que sabéis de R base, realizad un análisis exploratorio de datos y redactad un reporte con los hallazgos más importantes. No olvidéis agregar en el reporte el URL de vuestro repositorio de GitHub.*
+
+Primero de todo observemos que hay muestras que tienen valores desconocidos (NA), por tanto, vamos a eliminar dichas muestras
 
 ```{r}
-#| echo: false
-2 * 2
+datos = na.omit(datos)
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+
+
+Veamos la proporcion de cada especie que hay en la muestra:
+
+```{r}
+pie(prop.table(table(datos$species)),col = c("red","blue","yellow"), main = "Proporcion de especies")
+```
+
+# Medias muestrales de cada variable en función de cada especie
+
+Comparemos las medias de las variables cuantitativas en función de cada especie:
+
+## Longitud del pico
+
+Veamos la media de la longitud del pico de cada especie
+
+```{r}
+ping_adelie = datos[datos$species=="Adelie",]
+ping_chinstrap = datos[datos$species=="Chinstrap",]
+ping_gentoo = datos[datos$species=="Gentoo",]
+
+mean(ping_adelie$bill_length_mm)
+mean(ping_chinstrap$bill_length_mm)
+mean(ping_gentoo$bill_length_mm)
+```
+
+Notemos que los pinguinos de especie `Adelie` de media tienen el pico mas corto que las otras dos especies.
+
+
+## Ancho del pico
+
+```{r}
+mean(ping_adelie$bill_depth_mm)
+mean(ping_chinstrap$bill_depth_mm)
+mean(ping_gentoo$bill_depth_mm)
+```
+
+Notemos que los pinguinos de especie `Gentoo` de media tienen el pico menos ancho que las otras dos especies.
+
+## Longitud de la aleta
+
+```{r}
+mean(ping_adelie$flipper_length_mm)
+mean(ping_chinstrap$flipper_length_mm)
+mean(ping_gentoo$flipper_length_mm)
+```
+
+Notemos que los pinguinos de especie `Gentoo` de media tienen la aleta más larga que las otras dos especies.
+
+## Masa corporal
+
+
+```{r}
+mean(ping_adelie$body_mass_g)
+mean(ping_chinstrap$body_mass_g)
+mean(ping_gentoo$body_mass_g)
+```
+
+Notemos que los pinguinos de especie `Gentoo` de media tienen mas masa corporal que las otras dos especies.
+
+
+
+
+
+
