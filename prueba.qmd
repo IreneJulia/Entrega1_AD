@@ -6,7 +6,7 @@ toc: true
 editor: visual
 ---
 
-<<<<<<< HEAD
+
 ```{r}
 library(palmerpenguins)
 datos <- penguins
@@ -82,5 +82,4 @@ mean(ping_gentoo$body_mass_g)
 Notemos que los pinguinos de especie `Gentoo` de media tienen mas masa corporal que las otras dos especies.
 
 
-PINGUIIIIIIIIIIIIIIIIIPINGUII
-
+PINGUIPINGUI
