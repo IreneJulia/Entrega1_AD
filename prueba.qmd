@@ -102,7 +102,7 @@ Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58
 
 # Medias muestrales de cada variable en función de cada especie
 
-Comparemos las medias de las variables cuantitativas en función de cada especie:
+Comparemos las medias de las variables cuantitativas en función de cada especie, que corresponden con las características físicas de cada pingüino:
 
 ## Longitud del pico
 
@@ -148,6 +148,23 @@ mean(ping_chinstrap$body_mass_g)
 mean(ping_gentoo$body_mass_g)
 ```
 
-Notemos que los pinguinos de especie `Gentoo` de media tienen mas masa corporal que las otras dos especies.
+Notemos que los pinguinos de especie `Gentoo` de media tienen mas masa corporal que las otras dos especies. Y como hemos visto en el apartado de correlación, seguramente se debe a que la especie `Gentoo` es más grande que las otras dos.
+
+
+# Comparaciones geográficas
+
+Una vez hemos estudiado las medias de los valores cuantitativos de las características de los pingüinos, podemos ver si hay diferencias entre islas.
+
+Miramos que variables tienen mayor desviación típica:
+
+```{r}
+sd(ping_adelie$bill_length_mm)
+sd(ping_chinstrap$bill_length_mm)
+sd(ping_gentoo$bill_length_mm)
+```
+
+
+
+
 
 **Nota:** las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población.

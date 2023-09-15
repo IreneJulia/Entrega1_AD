@@ -88,7 +88,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#histogramas" id="toc-histogramas" class="nav-link" data-scroll-target="#histogramas">Histogramas</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#autocorrelación-de-las-variables" id="toc-autocorrelación-de-las-variables" class="nav-link" data-scroll-target="#autocorrelación-de-las-variables">Autocorrelación de las variables</a></li>
+  <li><a href="#correlación-de-las-variables" id="toc-correlación-de-las-variables" class="nav-link" data-scroll-target="#correlación-de-las-variables">Correlación de las variables</a></li>
   <li><a href="#medias-muestrales-de-cada-variable-en-función-de-cada-especie" id="toc-medias-muestrales-de-cada-variable-en-función-de-cada-especie" class="nav-link" data-scroll-target="#medias-muestrales-de-cada-variable-en-función-de-cada-especie">Medias muestrales de cada variable en función de cada especie</a>
   <ul class="collapse">
   <li><a href="#longitud-del-pico" id="toc-longitud-del-pico" class="nav-link" data-scroll-target="#longitud-del-pico">Longitud del pico</a></li>
@@ -235,9 +235,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="autocorrelación-de-las-variables" class="level1">
-<h1>Autocorrelación de las variables</h1>
-<p>Veamos si existe autocorrelación, tanto positiva como negativa de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.</p>
+<section id="correlación-de-las-variables" class="level1">
+<h1>Correlación de las variables</h1>
+<p>Veamos si existe correlación, tanto positiva como negativa de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>datos2 <span class="ot">=</span> datos[,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="sc">-</span><span class="dv">7</span>,<span class="sc">-</span><span class="dv">8</span>)] <span class="co"># eliminamos las variables no numéricas</span></span>
@@ -247,10 +247,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><img src="prueba_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las alas de los pingüinos, es decir, a mayor masa corporal, mayor longitud de alas, lo que da a pensar que si hay una especie que tenga, en general, mayor peso, será porque el animal es más grande.</p>
+<p>También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.65) entre la longitud del pico y la masa corporal, y la longitud del pico y la longitud de la aleta.</p>
+<p>Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58) entre la longitud de la aleta y el ancho del pico, es decir, cuanto más larga es la aleta, menos ancho el pico y viceversa.</p>
 </section>
 <section id="medias-muestrales-de-cada-variable-en-función-de-cada-especie" class="level1">
 <h1>Medias muestrales de cada variable en función de cada especie</h1>
-<p>Comparemos las medias de las variables cuantitativas en función de cada especie:</p>
+<p>Comparemos las medias de las variables cuantitativas en función de cada especie, corresponden con las características físicas de cada pingüino:</p>
 <section id="longitud-del-pico" class="level2">
 <h2 class="anchored" data-anchor-id="longitud-del-pico">Longitud del pico</h2>
 <p>Veamos la media de la longitud del pico de cada especie</p>
