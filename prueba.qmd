@@ -81,9 +81,9 @@ hist(datos$body_mass_g, main='Masa Corporal (g)', breaks = 30, col = 'pink',
 ```
 
 
-# Autocorrelación de las variables
+# Correlación de las variables
 
-Veamos si existe autocorrelación, tanto positiva como negativa de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.
+Veamos si existe correlación, tanto positiva como negativa de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.
 
 
 ```{r, warning=FALSE}
@@ -93,6 +93,11 @@ nombres = c("Longitud pico", "Ancho pico", "Longitud aleta", "Masa corporal")
 corPlot(datos2, cex = 0.8,  main = "Matriz de correlación", labels = nombres)
 ```
 
+Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las alas de los pingüinos, es decir, a mayor masa corporal, mayor longitud de alas, lo que da a pensar que si hay una especie que tenga, en general, mayor peso, será porque el animal es más grande.
+
+También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.65) entre la longitud del pico y la masa corporal, y la longitud del pico y la longitud de la aleta.
+
+Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58) entre la longitud de la aleta y el ancho del pico, es decir, cuanto más larga es la aleta, menos ancho el pico y viceversa.
 
 
 # Medias muestrales de cada variable en función de cada especie
