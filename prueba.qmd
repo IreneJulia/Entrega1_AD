@@ -6,28 +6,90 @@ toc: true
 editor: visual
 ---
 
-
-```{r}
+```{r, warning=FALSE}
 library(palmerpenguins)
 datos <- penguins
+```
+
+**Con lo que sabéis de R base, realizad un análisis exploratorio de datos y redactad un reporte con los hallazgos más importantes. No olvidéis agregar en el reporte el URL de vuestro repositorio de GitHub.**
+
+
+# Descripción de los datos
+
+El data frame consta de 344 observaciones y 8 variables. Cada muestra representa un pingüino al que se le ha extraido la siguiente información:
+
+- `species`: Tipo de especie (Adélie, Chinstrap and Gentoo)
+- `island`: La isla a la que pertence (Biscoe, Dream or Torgersen)
+- `bill_length_mm`: Longitud del pico (mm)
+- `bill_depth_mm`: Ancho del pico (mm)
+- `flipper_length_mm`: Longitud de la aleta (mm) 
+- `body_mass_g`: Masa corporal (g)
+- `sex`: sexo (macho o hembra)
+- `year`: año en que se tomó la muestra
+
+A continuación mostramos un resumen cuantitativo del data frame:
+
+```{r}
+summary(datos)
 head(datos)
 ```
 
-*Con lo que sabéis de R base, realizad un análisis exploratorio de datos y redactad un reporte con los hallazgos más importantes. No olvidéis agregar en el reporte el URL de vuestro repositorio de GitHub.*
-
-Primero de todo observemos que hay muestras que tienen valores desconocidos (NA), por tanto, vamos a eliminar dichas muestras
+Primero de todo, observemos que hay muestras que tienen valores desconocidos (NA), por tanto, vamos a eliminar dichas observaciones:
 
 ```{r}
 datos = na.omit(datos)
+summary(datos)
 ```
 
 
+## Gráficos
 
-Veamos la proporcion de cada especie que hay en la muestra:
+A continuación, mostraremos algunas representaciones visuales que dan una información descriptiva de los datos.
+
+### Diagramas de sectores
+
+Realizamos un diagrama de sectores de las variables `species`, `island`, `sex` y `year`.
+
+```{r echo=TRUE}
+par(plt = c(0.1, 0.9, 0.1, 0.8))
+par(mfrow=c(2,2))
+pie(prop.table(table(datos$species)),col = c("lightpink","lightblue","purple"), main = "Proporción de especies")
+pie(prop.table(table(datos$island)),col = c("yellow","orange","green"), main = "Proporción de cada isla")
+pie(prop.table(table(datos$sex)), labels = c("Hembra", "Macho"), col = c("blue","coral"), main = "Sexo")
+pie(prop.table(table(datos$year)),col = c("aquamarine","darksalmon","lightgreen"), main = "Año del experimento")
+```
+
+
+### Histogramas
+
+A continuación, realizaremos unos histogramas de las variables `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm` y `body_mass_g` para ver a simple vista la distribución de la población.
+
 
 ```{r}
-pie(prop.table(table(datos$species)),col = c("red","blue","yellow"), main = "Proporcion de especies")
+par(mfrow=c(2,2))
+hist(datos$bill_length_mm, main='Longitud del pico (mm)', breaks = 30, col = 'lightblue',
+     xlab = "Longitud pico", ylab = "Frecuencia")
+hist(datos$bill_depth_mm, main='Anchura del pico (mm)', breaks = 35, col = 'coral3',
+     xlab = "Ancho pico", ylab = "Frecuencia")
+hist(datos$flipper_length_mm, main='Longitud de la aleta (mm)', breaks = 30, col = 'lightgreen', xlab = "Longitud aleta", ylab = "Frecuencia")
+hist(datos$body_mass_g, main='Masa Corporal (g)', breaks = 30, col = 'pink',
+     xlab = "Masa corporal", ylab = "Frecuencia")
 ```
+
+
+# Autocorrelación de las variables
+
+Veamos si existe autocorrelación, tanto positiva como negativa de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.
+
+```{r, warning=FALSE}
+library(psych)
+datos2 = datos[,c(-1,-2,-7,-8)] # eliminamos las variables no numéricas
+nombres = c("Longitud pico", "Ancho pico", "Longitud aleta", "Masa corporal")
+corPlot(datos2, cex = 0.8,  main = "Matriz de correlación", labels = nombres)
+```
+
+
+
 
 # Medias muestrales de cada variable en función de cada especie
 
@@ -48,7 +110,6 @@ mean(ping_gentoo$bill_length_mm)
 ```
 
 Notemos que los pinguinos de especie `Adelie` de media tienen el pico mas corto que las otras dos especies.
-
 
 ## Ancho del pico
 
@@ -72,7 +133,6 @@ Notemos que los pinguinos de especie `Gentoo` de media tienen la aleta más larg
 
 ## Masa corporal
 
-
 ```{r}
 mean(ping_adelie$body_mass_g)
 mean(ping_chinstrap$body_mass_g)
@@ -81,6 +141,4 @@ mean(ping_gentoo$body_mass_g)
 
 Notemos que los pinguinos de especie `Gentoo` de media tienen mas masa corporal que las otras dos especies.
 
-
-PINGUIPINGUI3333333333333333
-2384982374892734892374
+**Nota:** las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población.
