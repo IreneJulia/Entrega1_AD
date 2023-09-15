@@ -6,6 +6,7 @@ toc: true
 editor: visual
 ---
 
+
 ```{r, warning=FALSE}
 library(palmerpenguins)
 datos <- penguins
@@ -15,6 +16,7 @@ datos <- penguins
 
 
 # Descripción de los datos
+
 
 El data frame consta de 344 observaciones y 8 variables. Cada muestra representa un pingüino al que se le ha extraido la siguiente información:
 
@@ -34,7 +36,9 @@ summary(datos)
 head(datos)
 ```
 
+
 Primero de todo, observemos que hay muestras que tienen valores desconocidos (NA), por tanto, vamos a eliminar dichas observaciones:
+
 
 ```{r}
 datos = na.omit(datos)
@@ -81,13 +85,13 @@ hist(datos$body_mass_g, main='Masa Corporal (g)', breaks = 30, col = 'pink',
 
 Veamos si existe autocorrelación, tanto positiva como negativa de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.
 
+
 ```{r, warning=FALSE}
 library(psych)
 datos2 = datos[,c(-1,-2,-7,-8)] # eliminamos las variables no numéricas
 nombres = c("Longitud pico", "Ancho pico", "Longitud aleta", "Masa corporal")
 corPlot(datos2, cex = 0.8,  main = "Matriz de correlación", labels = nombres)
 ```
-
 
 
 
