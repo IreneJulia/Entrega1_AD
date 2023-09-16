@@ -20,8 +20,8 @@ datos <- penguins
 
 El data frame consta de 344 observaciones y 8 variables. Cada muestra representa un pingüino al que se le ha extraido la siguiente información:
 
-- `species`: Tipo de especie (Adélie, Chinstrap and Gentoo)
-- `island`: La isla a la que pertence (Biscoe, Dream or Torgersen)
+- `species`: Especie (Adélie, Chinstrap y Gentoo)
+- `island`: La isla a la que pertence (Biscoe, Dream o Torgersen)
 - `bill_length_mm`: Longitud del pico (mm)
 - `bill_depth_mm`: Ancho del pico (mm)
 - `flipper_length_mm`: Longitud de la aleta (mm) 
@@ -29,7 +29,7 @@ El data frame consta de 344 observaciones y 8 variables. Cada muestra representa
 - `sex`: sexo (macho o hembra)
 - `year`: año en que se tomó la muestra
 
-A continuación mostramos un resumen cuantitativo del data frame:
+A continuación, mostramos un resumen cuantitativo del data frame:
 
 ```{r}
 summary(datos)
@@ -62,6 +62,9 @@ pie(prop.table(table(datos$island)),col = c("yellow","orange","green"), main = "
 pie(prop.table(table(datos$sex)), labels = c("Hembra", "Macho"), col = c("blue","coral"), main = "Sexo")
 pie(prop.table(table(datos$year)),col = c("aquamarine","darksalmon","lightgreen"), main = "Año del experimento")
 ```
+
+Observamos que hay el mismo número de machos que hembras, este hecho indica que seguramente se ha realizado un muestreo estratificado ya que la población ha sido dividida en dos estratos (machos y hembras).
+
 
 
 ### Histogramas
@@ -100,7 +103,7 @@ También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.6
 Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58) entre la longitud de la aleta y el ancho del pico, es decir, cuanto más larga es la aleta, menos ancho el pico y viceversa.
 
 
-# Medias muestrales de cada variable en función de cada especie
+# Medias muestrales de las variable en función de cada especie
 
 Comparemos las medias de las variables cuantitativas en función de cada especie, que corresponden con las características físicas de cada pingüino:
 
