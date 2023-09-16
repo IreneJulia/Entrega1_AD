@@ -57,13 +57,13 @@ Realizamos un diagrama de sectores de las variables `species`, `island`, `sex` y
 ```{r echo=TRUE}
 par(plt = c(0.1, 0.9, 0.1, 0.8))
 par(mfrow=c(2,2))
-pie(prop.table(table(datos$species)),col = c("lightpink","lightblue","purple"), main = "Proporción de especies")
-pie(prop.table(table(datos$island)),col = c("yellow","orange","green"), main = "Proporción de cada isla")
-pie(prop.table(table(datos$sex)), labels = c("Hembra", "Macho"), col = c("blue","coral"), main = "Sexo")
-pie(prop.table(table(datos$year)),col = c("aquamarine","darksalmon","lightgreen"), main = "Año del experimento")
+pie(prop.table(table(datos$species)),col = hcl.colors(3, "Greens 3"), main = "Proporción de especies")
+pie(prop.table(table(datos$island)),col = hcl.colors(3, "Blues 3"), main = "Proporción de cada isla")
+pie(prop.table(table(datos$sex)), labels = c("Hembra", "Macho"), col = hcl.colors(3, "Fall"), main = "Sexo")
+pie(prop.table(table(datos$year)),col = hcl.colors(3, "Mint"), main = "Año del experimento")
 ```
 
-Observamos que hay el mismo número de machos que hembras, este hecho indica que seguramente se ha realizado un muestreo estratificado ya que la población ha sido dividida en dos estratos (machos y hembras).
+
 
 
 
@@ -158,7 +158,7 @@ Notemos que los pinguinos de especie `Gentoo` de media tienen mas masa corporal 
 
 Una vez hemos estudiado las medias de los valores cuantitativos de las características de los pingüinos, podemos ver si hay diferencias entre islas.
 
-PENSAR BÉ COM ENFOCAR-HO, ES A DIR, SERIA INTERESSANT VEURE QUINES DADES TENEN MAJOR DISPERSIÓ PER ESTUDIAR SI AFECTA GEOGRAFICAMENT, IE, IMAGINA QUE SURT QUE ES PINGÜINOS GENTOO TENEN ES BEC MES LLARG I A MES MOSTREN DISPERSIO EN SES DADES, PUES POT SER QUE A UNA ILLA, PER ES TIPUS DE MENJAR, TENGUIN ES BEC ME LLARG O MES CURT I FACI ALTERAR SA MITJANA
+PENSAR BÉ COM ENFOCAR-HO, ES A DIR, SERIA INTERESSANT VEURE QUINES DADES TENEN MAJOR DISPERSIÓ PER ESTUDIAR SI AFECTA GEOGRAFICAMENT, IE, IMAGINA QUE SURT QUE ES PINGÜINOS GENTOO TENEN ES BEC MES LLARG I A MES MOSTREN DISPERSIO EN SES DADES, PUES POT SER QUE A UNA ILLA, PER ES TIPUS DE MENJAR, TENGUIN ES BEC MES LLARG O MES CURT I FACI ALTERAR SA MITJANA
 
 
 
