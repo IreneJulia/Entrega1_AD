@@ -88,7 +88,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#histogramas" id="toc-histogramas" class="nav-link" data-scroll-target="#histogramas">Histogramas</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#correlación-de-las-variables" id="toc-correlación-de-las-variables" class="nav-link" data-scroll-target="#correlación-de-las-variables">Correlación de las variables</a></li>
   <li><a href="#medias-muestrales-de-las-variable-en-función-de-cada-especie" id="toc-medias-muestrales-de-las-variable-en-función-de-cada-especie" class="nav-link" data-scroll-target="#medias-muestrales-de-las-variable-en-función-de-cada-especie">Medias muestrales de las variable en función de cada especie</a>
   <ul class="collapse">
   <li><a href="#longitud-del-pico" id="toc-longitud-del-pico" class="nav-link" data-scroll-target="#longitud-del-pico">Longitud del pico</a></li>
@@ -96,6 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#longitud-de-la-aleta" id="toc-longitud-de-la-aleta" class="nav-link" data-scroll-target="#longitud-de-la-aleta">Longitud de la aleta</a></li>
   <li><a href="#masa-corporal" id="toc-masa-corporal" class="nav-link" data-scroll-target="#masa-corporal">Masa corporal</a></li>
   </ul></li>
+  <li><a href="#correlación-de-las-variables" id="toc-correlación-de-las-variables" class="nav-link" data-scroll-target="#correlación-de-las-variables">Correlación de las variables</a></li>
   <li><a href="#comparaciones-geográficas" id="toc-comparaciones-geográficas" class="nav-link" data-scroll-target="#comparaciones-geográficas">Comparaciones geográficas</a></li>
   </ul>
 </nav>
@@ -236,34 +236,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </section>
 </section>
-<section id="correlación-de-las-variables" class="level1">
-<h1>Correlación de las variables</h1>
-<p>Veamos si existe correlación, tanto positiva como negativa de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>datos2 <span class="ot">=</span> datos[,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="sc">-</span><span class="dv">7</span>,<span class="sc">-</span><span class="dv">8</span>)] <span class="co"># eliminamos las variables no numéricas</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Longitud pico"</span>, <span class="st">"Ancho pico"</span>, <span class="st">"Longitud aleta"</span>, <span class="st">"Masa corporal"</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">corPlot</span>(datos2, <span class="at">cex =</span> <span class="fl">0.8</span>,  <span class="at">main =</span> <span class="st">"Matriz de correlación"</span>, <span class="at">labels =</span> nombres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las alas de los pingüinos, es decir, a mayor masa corporal, mayor longitud de alas, lo que da a pensar que si hay una especie que tenga, en general, mayor peso, será porque el animal es más grande.</p>
-<p>También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.65) entre la longitud del pico y la masa corporal, y la longitud del pico y la longitud de la aleta.</p>
-<p>Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58) entre la longitud de la aleta y el ancho del pico, es decir, cuanto más larga es la aleta, menos ancho el pico y viceversa.</p>
-</section>
 <section id="medias-muestrales-de-las-variable-en-función-de-cada-especie" class="level1">
 <h1>Medias muestrales de las variable en función de cada especie</h1>
-<p>Comparemos las medias de las variables cuantitativas en función de cada especie, que corresponden con las características físicas de cada pingüino:</p>
+<p>Comparemos las medias de las variables cuantitativas en función de cada especie, que corresponden con las características físicas de cada pingüino.</p>
+<p>Para ello, dividamos el data frame por especies:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ping_adelie <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Adelie"</span>,]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ping_chinstrap <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Chinstrap"</span>,]</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>ping_gentoo <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="longitud-del-pico" class="level2">
 <h2 class="anchored" data-anchor-id="longitud-del-pico">Longitud del pico</h2>
 <p>Veamos la media de la longitud del pico de cada especie</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ping_adelie <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Adelie"</span>,]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ping_chinstrap <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Chinstrap"</span>,]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>ping_gentoo <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span>,]</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_adelie<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_adelie<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 38.82397</code></pre>
 </div>
@@ -277,6 +263,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Notemos que los pinguinos de especie <code>Adelie</code> de media tienen el pico mas corto que las otras dos especies.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="prueba_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="ancho-del-pico" class="level2">
 <h2 class="anchored" data-anchor-id="ancho-del-pico">Ancho del pico</h2>
@@ -295,6 +286,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Notemos que los pinguinos de especie <code>Gentoo</code> de media tienen el pico menos ancho que las otras dos especies.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="prueba_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="longitud-de-la-aleta" class="level2">
 <h2 class="anchored" data-anchor-id="longitud-de-la-aleta">Longitud de la aleta</h2>
@@ -313,6 +309,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Notemos que los pinguinos de especie <code>Gentoo</code> de media tienen la aleta más larga que las otras dos especies.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="prueba_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="masa-corporal" class="level2">
 <h2 class="anchored" data-anchor-id="masa-corporal">Masa corporal</h2>
@@ -331,7 +332,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Notemos que los pinguinos de especie <code>Gentoo</code> de media tienen mas masa corporal que las otras dos especies. Y como hemos visto en el apartado de correlación, seguramente se debe a que la especie <code>Gentoo</code> es más grande que las otras dos.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="prueba_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
+</section>
+<section id="correlación-de-las-variables" class="level1">
+<h1>Correlación de las variables</h1>
+<p>Veamos si existe correlación, tanto positiva como negativa de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>datos2 <span class="ot">=</span> datos[,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="sc">-</span><span class="dv">7</span>,<span class="sc">-</span><span class="dv">8</span>)] <span class="co"># eliminamos las variables no numéricas</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Longitud pico"</span>, <span class="st">"Ancho pico"</span>, <span class="st">"Longitud aleta"</span>, <span class="st">"Masa corporal"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">corPlot</span>(datos2, <span class="at">cex =</span> <span class="fl">0.8</span>,  <span class="at">main =</span> <span class="st">"Matriz de correlación"</span>, <span class="at">labels =</span> nombres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="prueba_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las alas de los pingüinos, es decir, a mayor masa corporal, mayor longitud de alas, lo que da a pensar que si hay una especie que tenga, en general, mayor peso, será porque el animal es más grande.</p>
+<p>También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.65) entre la longitud del pico y la masa corporal, y la longitud del pico y la longitud de la aleta.</p>
+<p>Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58) entre la longitud de la aleta y el ancho del pico, es decir, cuanto más larga es la aleta, menos ancho el pico y viceversa.</p>
 </section>
 <section id="comparaciones-geográficas" class="level1">
 <h1>Comparaciones geográficas</h1>
