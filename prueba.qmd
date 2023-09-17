@@ -175,7 +175,7 @@ text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex =
 
 ## Masa corporal
 
-```{r}
+```{r, results='hold'}
 mean(ping_adelie$body_mass_g)
 mean(ping_chinstrap$body_mass_g)
 mean(ping_gentoo$body_mass_g)
@@ -219,10 +219,32 @@ Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58
 
 # Comparaciones geográficas
 
-Una vez hemos estudiado las medias de los valores cuantitativos de las características de los pingüinos, podemos ver si hay diferencias entre islas.
+```{r}
+# Una vez hemos estudiado las medias de los valores cuantitativos de las características de los pingüinos, podemos ver si hay diferencias entre islas.
 
-PENSAR BÉ COM ENFOCAR-HO, ES A DIR, SERIA INTERESSANT VEURE QUINES DADES TENEN MAJOR DISPERSIÓ PER ESTUDIAR SI AFECTA GEOGRAFICAMENT, IE, IMAGINA QUE SURT QUE ES PINGÜINOS GENTOO TENEN ES BEC MES LLARG I A MES MOSTREN DISPERSIO EN SES DADES, PUES POT SER QUE A UNA ILLA, PER ES TIPUS DE MENJAR, TENGUIN ES BEC MES LLARG O MES CURT I FACI ALTERAR SA MITJANA
+# PENSAR BÉ COM ENFOCAR-HO, ES A DIR, SERIA INTERESSANT VEURE QUINES DADES TENEN MAJOR DISPERSIÓ PER ESTUDIAR SI AFECTA GEOGRAFICAMENT, IE, IMAGINA QUE SURT QUE ES PINGÜINOS GENTOO TENEN ES BEC MES LLARG I A MES MOSTREN DISPERSIO EN SES DADES, PUES POT SER QUE A UNA ILLA, PER ES TIPUS DE MENJAR, TENGUIN ES BEC MES LLARG O MES CURT I FACI ALTERAR SA MITJANA
 
+```
+
+
+En este apartado queremos ver si, a nivel muestral, los pingüinos de diferentes islas presentas diferencias significativas.
+
+```{r}
+ping_Biscoe = datos[datos$island=="Biscoe",]
+ping_Dream = datos[datos$island=="Dream",]
+ping_Torgersen = datos[datos$island=="Torgersen",]
+
+table(datos$island, datos$species)
+```
+
+## Longitud del pico
+
+```{r}
+mean(ping_Biscoe$bill_length_mm)
+mean(ping_Dream$bill_length_mm)
+mean(ping_Torgersen$bill_length_mm)
+```
+Notemos que los pinguinos de la isla `Torgersen` de media tienen el pico mas corto que los de las otras islas.
 
 
 
