@@ -96,10 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#masa-corporal" id="toc-masa-corporal" class="nav-link" data-scroll-target="#masa-corporal">Masa corporal</a></li>
   </ul></li>
   <li><a href="#correlación-de-las-variables" id="toc-correlación-de-las-variables" class="nav-link" data-scroll-target="#correlación-de-las-variables">Correlación de las variables</a></li>
-  <li><a href="#comparaciones-geográficas" id="toc-comparaciones-geográficas" class="nav-link" data-scroll-target="#comparaciones-geográficas">Comparaciones geográficas</a>
-  <ul class="collapse">
-  <li><a href="#longitud-del-pico-1" id="toc-longitud-del-pico-1" class="nav-link" data-scroll-target="#longitud-del-pico-1">Longitud del pico</a></li>
-  </ul></li>
+  <li><a href="#comparaciones-geográficas" id="toc-comparaciones-geográficas" class="nav-link" data-scroll-target="#comparaciones-geográficas">Comparaciones geográficas</a></li>
   </ul>
 </nav>
 </div>
@@ -146,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><code>sex</code>: sexo (macho o hembra)</li>
 <li><code>year</code>: año en que se tomó la muestra</li>
 </ul>
-<p>A continuación, mostramos un resumen cuantitativo del data frame:</p>
+<p>A continuación, visualicemos las primeras muestras del data frame:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -183,7 +180,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  3rd Qu.:213       3rd Qu.:4775                          
  Max.   :231       Max.   :6300                          </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos<span class="sc">$</span>island, datos<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A continuación mostremos una tabla de frecuencias absolutas que nos indique cuantas especies hay en cada isla:</p>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>           
             Adelie Chinstrap Gentoo
@@ -200,14 +199,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="diagramas-de-sectores">Diagramas de sectores</h3>
 <p>Realizamos un diagrama de sectores de las variables <code>species</code>, <code>island</code>, <code>sex</code> y <code>year</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">plt =</span> <span class="fu">c</span>(<span class="fl">0.1</span>, <span class="fl">0.86</span>, <span class="fl">0.1</span>, <span class="fl">0.8</span>))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(datos<span class="sc">$</span>species), <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="fu">names</span>(<span class="fu">table</span>(datos<span class="sc">$</span>species)), <span class="st">" ("</span>, <span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(datos<span class="sc">$</span>species)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%)"</span>), <span class="at">col =</span> <span class="fu">hcl.colors</span>(<span class="dv">3</span>, <span class="st">"Greens 3"</span>), <span class="at">main =</span> <span class="st">"Proporción de especies"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(datos<span class="sc">$</span>island), <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="fu">names</span>(<span class="fu">table</span>(datos<span class="sc">$</span>island)), <span class="st">" ("</span>, <span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(datos<span class="sc">$</span>island)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%)"</span>), <span class="at">col =</span> <span class="fu">hcl.colors</span>(<span class="dv">3</span>, <span class="st">"Blues 3"</span>), <span class="at">main =</span> <span class="st">"Proporción de cada isla"</span>)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(datos<span class="sc">$</span>sex), <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="fu">names</span>(<span class="fu">table</span>(datos<span class="sc">$</span>sex)), <span class="st">" ("</span>, <span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(datos<span class="sc">$</span>sex)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%)"</span>), <span class="at">col =</span> <span class="fu">hcl.colors</span>(<span class="dv">3</span>, <span class="st">"Fall"</span>), <span class="at">main =</span> <span class="st">"Sexo"</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pie</span>(<span class="fu">table</span>(datos<span class="sc">$</span>year), <span class="at">labels =</span> <span class="fu">paste0</span>(<span class="fu">names</span>(<span class="fu">table</span>(datos<span class="sc">$</span>year)), <span class="st">" ("</span>, <span class="fu">round</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(datos<span class="sc">$</span>year)) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">"%)"</span>), <span class="at">col =</span> <span class="fu">hcl.colors</span>(<span class="dv">3</span>, <span class="st">"Mint"</span>), <span class="at">main =</span> <span class="st">"Año del experimento"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid" width="672"></p>
+<p><img src="prueba_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
@@ -215,42 +208,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="histogramas">Histogramas</h3>
 <p>A continuación, realizaremos unos histogramas de las variables <code>bill_length_mm</code>, <code>bill_depth_mm</code>, <code>flipper_length_mm</code> y <code>body_mass_g</code> para ver a simple vista la distribución de la población.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(datos<span class="sc">$</span>bill_length_mm, <span class="at">main=</span><span class="st">'Longitud del pico (mm)'</span>, <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">col =</span> <span class="st">'lightblue'</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Longitud pico"</span>, <span class="at">ylab =</span> <span class="st">"Frecuencia"</span>)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(datos<span class="sc">$</span>bill_depth_mm, <span class="at">main=</span><span class="st">'Anchura del pico (mm)'</span>, <span class="at">breaks =</span> <span class="dv">35</span>, <span class="at">col =</span> <span class="st">'coral3'</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Ancho pico"</span>, <span class="at">ylab =</span> <span class="st">"Frecuencia"</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(datos<span class="sc">$</span>flipper_length_mm, <span class="at">main=</span><span class="st">'Longitud de la aleta (mm)'</span>, <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">col =</span> <span class="st">'lightgreen'</span>, <span class="at">xlab =</span> <span class="st">"Longitud aleta"</span>, <span class="at">ylab =</span> <span class="st">"Frecuencia"</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(datos<span class="sc">$</span>body_mass_g, <span class="at">main=</span><span class="st">'Masa Corporal (g)'</span>, <span class="at">breaks =</span> <span class="dv">30</span>, <span class="at">col =</span> <span class="st">'pink'</span>,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Masa corporal"</span>, <span class="at">ylab =</span> <span class="st">"Frecuencia"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="prueba_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Realicemos una tabla que nos resuma estas cuatro variables de forma cuantitativa</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>resumen <span class="ot">=</span> <span class="cf">function</span>(x){</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  Min <span class="ot">=</span> <span class="fu">min</span>(x)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  Primer_Cuartil <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">quantile</span>(x,<span class="fl">0.25</span>, <span class="at">names =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  Mediana <span class="ot">=</span> <span class="fu">median</span>(x)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  Media <span class="ot">=</span> <span class="fu">mean</span>(x)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  Tercer_Cuartil <span class="ot">=</span> <span class="fu">c</span>(<span class="fu">quantile</span>(x,<span class="fl">0.75</span>, <span class="at">names =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  Max <span class="ot">=</span> <span class="fu">max</span>(x)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  Sd <span class="ot">=</span> <span class="fu">sd</span>(x)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">=</span> <span class="fu">c</span>(Min,Primer_Cuartil,Mediana, Media, Tercer_Cuartil, Max, Sd)</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>( <span class="fu">round</span>(res,<span class="dv">2</span>))</span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>noms <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Min"</span>, <span class="st">"Primer_Cuartil"</span>, <span class="st">"Mediana"</span>, <span class="st">"Media"</span>, <span class="st">"Tercer_Cuartil"</span>, <span class="st">"Max"</span>, <span class="st">"Sd"</span>)</span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="fu">resumen</span>(datos<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 32.10 39.50 44.50 43.99 48.60 59.60  5.47</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sumary_sd <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="fu">resumen</span>(datos<span class="sc">$</span>bill_length_mm),<span class="fu">resumen</span>(datos<span class="sc">$</span>bill_depth_mm),<span class="fu">resumen</span>(datos<span class="sc">$</span>flipper_length_mm),<span class="fu">resumen</span>(datos<span class="sc">$</span>body_mass_g), <span class="at">row.names =</span> noms)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(sumary_sd) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Long. Pico"</span>, <span class="st">"Ancho Pico"</span>, <span class="st">"Long. Aleta"</span>, <span class="st">"Masa Corporal"</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>sumary_sd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               Long. Pico Ancho Pico Long. Aleta Masa Corporal
 Min                 32.10      13.10      172.00       2700.00
@@ -270,157 +233,71 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <p>Comparemos las medias de las variables cuantitativas en función de cada especie, que corresponden con las características físicas de cada pingüino.</p>
 <p>Para ello, dividamos el data frame por especies:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ping_adelie <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Adelie"</span>,]</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ping_chinstrap <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Chinstrap"</span>,]</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ping_gentoo <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ping_adelie <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Adelie"</span>,]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ping_chinstrap <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Chinstrap"</span>,]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ping_gentoo <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="longitud-del-pico" class="level2">
 <h2 class="anchored" data-anchor-id="longitud-del-pico">Longitud del pico</h2>
-<p>Veamos la media de la longitud del pico de cada especie</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_adelie<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 38.82397</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_chinstrap<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 48.83382</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_gentoo<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 47.56807</code></pre>
-</div>
-</div>
-<p>Notemos que los pinguinos de especie <code>Adelie</code> de media tienen el pico mas corto que las otras dos especies.</p>
+<p>Veamos la media de la longitud del pico de cada especie.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="prueba_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Notemos que los pinguinos de especie <code>Adelie</code> de media tienen el pico mas corto que las otras dos especies.</p>
 </section>
 <section id="ancho-del-pico" class="level2">
 <h2 class="anchored" data-anchor-id="ancho-del-pico">Ancho del pico</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_adelie<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 18.34726</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_chinstrap<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 18.42059</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_gentoo<span class="sc">$</span>bill_depth_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 14.99664</code></pre>
+<div class="cell-output-display">
+<p><img src="prueba_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Notemos que los pinguinos de especie <code>Gentoo</code> de media tienen el pico menos ancho que las otras dos especies.</p>
+</section>
+<section id="longitud-de-la-aleta" class="level2">
+<h2 class="anchored" data-anchor-id="longitud-de-la-aleta">Longitud de la aleta</h2>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="prueba_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-</section>
-<section id="longitud-de-la-aleta" class="level2">
-<h2 class="anchored" data-anchor-id="longitud-de-la-aleta">Longitud de la aleta</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_adelie<span class="sc">$</span>flipper_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 190.1027</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_chinstrap<span class="sc">$</span>flipper_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 195.8235</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_gentoo<span class="sc">$</span>flipper_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 217.2353</code></pre>
-</div>
-</div>
 <p>Notemos que los pinguinos de especie <code>Gentoo</code> de media tienen la aleta más larga que las otras dos especies.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
 </section>
 <section id="masa-corporal" class="level2">
 <h2 class="anchored" data-anchor-id="masa-corporal">Masa corporal</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_adelie<span class="sc">$</span>body_mass_g)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_chinstrap<span class="sc">$</span>body_mass_g)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_gentoo<span class="sc">$</span>body_mass_g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3706.164
-[1] 3733.088
-[1] 5092.437</code></pre>
-</div>
-</div>
-<p>Notemos que los pinguinos de especie <code>Gentoo</code> de media tienen mas masa corporal que las otras dos especies. Y como hemos visto en el apartado de correlación, seguramente se debe a que la especie <code>Gentoo</code> es más grande que las otras dos.</p>
-<div class="cell">
 <div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="672"></p>
+<p><img src="prueba_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Notemos que los pinguinos de especie <code>Gentoo</code> de media tienen mas masa corporal que las otras dos especies.</p>
 </section>
 </section>
 <section id="correlación-de-las-variables" class="level1">
 <h1>Correlación de las variables</h1>
 <p>Veamos si existe correlación, tanto positiva como negativa de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>datos2 <span class="ot">=</span> datos[,<span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>,<span class="sc">-</span><span class="dv">2</span>,<span class="sc">-</span><span class="dv">7</span>,<span class="sc">-</span><span class="dv">8</span>)] <span class="co"># eliminamos las variables no numéricas</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>nombres <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Longitud pico"</span>, <span class="st">"Ancho pico"</span>, <span class="st">"Longitud aleta"</span>, <span class="st">"Masa corporal"</span>)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">corPlot</span>(datos2, <span class="at">cex =</span> <span class="fl">0.8</span>,  <span class="at">main =</span> <span class="st">"Matriz de correlación"</span>, <span class="at">labels =</span> nombres)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+<p><img src="prueba_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las alas de los pingüinos, es decir, a mayor masa corporal, mayor longitud de alas, lo que da a pensar que si hay una especie que tenga, en general, mayor peso, será porque el animal es más grande.</p>
 <p>También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.65) entre la longitud del pico y la masa corporal, y la longitud del pico y la longitud de la aleta.</p>
 <p>Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58) entre la longitud de la aleta y el ancho del pico, es decir, cuanto más larga es la aleta, menos ancho el pico y viceversa.</p>
+<p>No es de extrañar que en el apartado de las medias muestrales en función de cada especie nos saliera que los pingüinos de la especie <code>Gentoo</code> son los que tienen más masa corporal y los que más longitud de la aleta poseen.</p>
+<p><strong>Nota:</strong> las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población sin hacer ningun contraste de hipotesis.</p>
 </section>
 <section id="comparaciones-geográficas" class="level1">
 <h1>Comparaciones geográficas</h1>
+<p>Como hemos visto anteriormente, la única especie que se encuentra en las tres islas es la especie <code>Adelie</code>. Por tanto, compararemos las caracteristicas de esta especie en función de las islas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Una vez hemos estudiado las medias de los valores cuantitativos de las características de los pingüinos, podemos ver si hay diferencias entre islas.</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># PENSAR BÉ COM ENFOCAR-HO, ES A DIR, SERIA INTERESSANT VEURE QUINES DADES TENEN MAJOR DISPERSIÓ PER ESTUDIAR SI AFECTA GEOGRAFICAMENT, IE, IMAGINA QUE SURT QUE ES PINGÜINOS GENTOO TENEN ES BEC MES LLARG I A MES MOSTREN DISPERSIO EN SES DADES, PUES POT SER QUE A UNA ILLA, PER ES TIPUS DE MENJAR, TENGUIN ES BEC MES LLARG O MES CURT I FACI ALTERAR SA MITJANA</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>En este apartado queremos ver si, a nivel muestral, los pingüinos de diferentes islas presentas diferencias significativas.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ping_Biscoe <span class="ot">=</span> datos[datos<span class="sc">$</span>island<span class="sc">==</span><span class="st">"Biscoe"</span>,]</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ping_Dream <span class="ot">=</span> datos[datos<span class="sc">$</span>island<span class="sc">==</span><span class="st">"Dream"</span>,]</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>ping_Torgersen <span class="ot">=</span> datos[datos<span class="sc">$</span>island<span class="sc">==</span><span class="st">"Torgersen"</span>,]</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos<span class="sc">$</span>island, datos<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           
-            Adelie Chinstrap Gentoo
-  Biscoe        44         0    119
-  Dream         55        68      0
-  Torgersen     47         0      0</code></pre>
+<div class="cell-output-display">
+<p><img src="prueba_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<section id="longitud-del-pico-1" class="level2">
-<h2 class="anchored" data-anchor-id="longitud-del-pico-1">Longitud del pico</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_Biscoe<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 45.24847</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_Dream<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 44.22195</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(ping_Torgersen<span class="sc">$</span>bill_length_mm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 39.0383</code></pre>
-</div>
-</div>
-<p>Notemos que los pinguinos de la isla <code>Torgersen</code> de media tienen el pico mas corto que los de las otras islas.</p>
-<p><strong>Nota:</strong> las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población.</p>
-</section>
+<p>Notemos que, a simple vista, no hay mucha diferencia en la especie <code>Adelie</code> en función de la isla en la que habite.</p>
 </section>
 
 </main>
