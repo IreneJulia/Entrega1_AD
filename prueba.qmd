@@ -102,30 +102,14 @@ noms = c("Min", "Primer_Cuartil", "Mediana", "Media", "Tercer_Cuartil", "Max", "
 
 resumen(datos$bill_length_mm)
 
-(sumary_sd = data.frame(resumen(datos$bill_length_mm),resumen(datos$bill_depth_mm),resumen(datos$flipper_length_mm),resumen(datos$body_mass_g), row.names = noms))
+sumary_sd = data.frame(resumen(datos$bill_length_mm),resumen(datos$bill_depth_mm),resumen(datos$flipper_length_mm),resumen(datos$body_mass_g), row.names = noms)
 
+colnames(sumary_sd) = c("Long. Pico", "Ancho Pico", "Long. Aleta", "Masa Corporal")
 
-
-```
-
-
-
-
-```{r warning=FALSE}
-summary_sd <- function(x) {
-  resumen <- summary(x)
-  resumen$sd <- sd(x)  # Agregar la desviación estándar
-  return(resumen)
-}
-
-
-data.frame(c(summary(datos$bill_length_mm), summary(datos$bill_depth_mm)))
-
-summary_sd(datos$bill_length_mm)
-
-
+sumary_sd
 
 ```
+
 
 
 
