@@ -32,7 +32,6 @@ El data frame consta de 344 observaciones y 8 variables. Cada muestra representa
 A continuación, mostramos un resumen cuantitativo del data frame:
 
 ```{r}
-summary(datos)
 head(datos)
 ```
 
@@ -44,8 +43,9 @@ Primero de todo, observemos que hay muestras que tienen valores desconocidos (NA
 datos = na.omit(datos)
 datos$year = as.factor(datos$year)
 summary(datos)
+table(datos$island, datos$species)
 ```
-
+ Notemos que los pingüinos de la especie `Adelie` se encuentran en las tres islas. En cambio, los pingüinos de la especie `Chinstrap` solo están en la isla `Dream`. Del mismo modo los de la especie `Gentoo`solo se encuentran en la isla `Biscoe`.
 
 ## Gráficos
 
@@ -55,16 +55,7 @@ A continuación, mostraremos algunas representaciones visuales que dan una infor
 
 Realizamos un diagrama de sectores de las variables `species`, `island`, `sex` y `year`.
 
-```{r echo=TRUE}
-par(plt = c(0.1, 0.9, 0.1, 0.8))
-par(mfrow=c(2,2))
-pie(prop.table(table(datos$species)),col = hcl.colors(3, "Greens 3"), main = "Proporción de especies")
-pie(prop.table(table(datos$island)),col = hcl.colors(3, "Blues 3"), main = "Proporción de cada isla")
-pie(prop.table(table(datos$sex)), labels = c("Hembra", "Macho"), col = hcl.colors(3, "Fall"), main = "Sexo")
-pie(prop.table(table(datos$year)),col = hcl.colors(3, "Mint"), main = "Año del experimento")
-```
-
-```{r echo=TRUE}
+```{r}
 par(plt = c(0.1, 0.86, 0.1, 0.8))
 par(mfrow=c(2,2))
 pie(table(datos$species), labels = paste0(names(table(datos$species)), " (", round(prop.table(table(datos$species)) * 100, 1), "%)"), col = hcl.colors(3, "Greens 3"), main = "Proporción de especies")
@@ -72,9 +63,6 @@ pie(table(datos$island), labels = paste0(names(table(datos$island)), " (", round
 pie(table(datos$sex), labels = paste0(names(table(datos$sex)), " (", round(prop.table(table(datos$sex)) * 100, 1), "%)"), col = hcl.colors(3, "Fall"), main = "Sexo")
 pie(table(datos$year), labels = paste0(names(table(datos$year)), " (", round(prop.table(table(datos$year)) * 100, 1), "%)"), col = hcl.colors(3, "Mint"), main = "Año del experimento")
 ```
-
-
-
 
 
 
@@ -94,7 +82,50 @@ hist(datos$body_mass_g, main='Masa Corporal (g)', breaks = 30, col = 'pink',
      xlab = "Masa corporal", ylab = "Frecuencia")
 ```
 
+```{r}
 
+
+
+resumen = function(x){
+  Min = min(x)
+  Primer_Cuartil = c(quantile(x,0.25, names = FALSE))
+  Mediana = median(x)
+  Media = mean(x)
+  Tercer_Cuartil = c(quantile(x,0.75, names = FALSE))
+  Max = max(x)
+  Sd = sd(x)
+  res = c(Min,Primer_Cuartil,Mediana, Media, Tercer_Cuartil, Max, Sd)
+  return( round(res,2))
+}
+
+noms = c("Min", "Primer_Cuartil", "Mediana", "Media", "Tercer_Cuartil", "Max", "Sd")
+
+resumen(datos$bill_length_mm)
+
+(sumary_sd = data.frame(resumen(datos$bill_length_mm),resumen(datos$bill_depth_mm),resumen(datos$flipper_length_mm),resumen(datos$body_mass_g), row.names = noms))
+
+
+
+```
+
+
+
+
+```{r warning=FALSE}
+summary_sd <- function(x) {
+  resumen <- summary(x)
+  resumen$sd <- sd(x)  # Agregar la desviación estándar
+  return(resumen)
+}
+
+
+data.frame(c(summary(datos$bill_length_mm), summary(datos$bill_depth_mm)))
+
+summary_sd(datos$bill_length_mm)
+
+
+
+```
 
 
 
@@ -206,7 +237,6 @@ points(x = 1:length(medias), y = medias, pch = 19, col = "red")
 text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
      col = "white")
 ```
-
 
 
 # Correlación de las variables
