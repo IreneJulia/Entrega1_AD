@@ -42,21 +42,19 @@ datos$year = as.factor(datos$year)
 summary(datos)
 ```
 
-A continuación mostremos una tabla de frecuencias absolutas que nos indique cuantas especies hay en cada isla:
+A continuación, mostremos una tabla de frecuencias absolutas que nos indique cuantas especies hay en cada isla:
 
 ```{r, echo=FALSE}
 table(datos$island, datos$species)
 ```
 
-Notemos que los pingüinos de la especie `Adelie` se encuentran en las tres islas. En cambio, los pingüinos de la especie `Chinstrap` solo están en la isla `Dream`. Del mismo modo los de la especie `Gentoo`solo se encuentran en la isla `Biscoe`.
+Notemos que los pingüinos de la especie `Adelie` se encuentran en las tres islas. En cambio, los pingüinos de la especie `Chinstrap` solo están en la isla `Dream`. Del mismo modo, los de la especie `Gentoo`solo habitan en la isla `Biscoe`.
 
-## Gráficos
+# Descripción de las variables cualitativas
 
 A continuación, mostraremos algunas representaciones visuales que dan una información descriptiva de los datos.
 
-### Diagramas de sectores
-
-Realizamos un diagrama de sectores de las variables `species`, `island`, `sex` y `year`.
+Realizamos un diagrama de sectores de las variables `species`, `island`, `sex` y `year`, las variables de tipo factor.
 
 ```{r, echo=FALSE}
 par(plt = c(0.08,0.9,0.25,0.8))
@@ -67,9 +65,11 @@ pie(table(datos$sex), labels = paste0(names(table(datos$sex)), " (", round(prop.
 pie(table(datos$year), labels = paste0(names(table(datos$year)), " (", round(prop.table(table(datos$year)) * 100, 1), "%)"), col = hcl.colors(3, "Mint"), main = "Año del experimento")
 ```
 
-### Histogramas
 
-A continuación, realizaremos unos histogramas de las variables `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm` y `body_mass_g` para ver a simple vista la distribución de la población.
+
+# Desripción de las variables cuantitativas
+
+A continuación, realizaremos unos histogramas de las variables `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm` y `body_mass_g` para ver a simple vista la distribución de la población. Se trata de las características fisiológicas del animal.
 
 ```{r, echo=FALSE}
 par(mfrow=c(2,2))
@@ -83,7 +83,7 @@ hist(datos$body_mass_g, main='Masa Corporal (g)', breaks = 30, col = 'pink',
 ```
 
 
-Realicemos una tabla que nos resuma estas cuatro variables de forma cuantitativa
+Realicemos una tabla que nos de información numérica de estas cuatro variables cuantitativas.
 
 
 ```{r, echo=FALSE}
@@ -108,9 +108,12 @@ colnames(sumary_sd) = c("Long. Pico", "Ancho Pico", "Long. Aleta", "Masa Corpora
 sumary_sd
 ```
 
-# Medias muestrales de las variable en función de cada especie
 
-Comparemos las medias de las variables cuantitativas en función de cada especie, que corresponden con las características físicas de cada pingüino.
+
+# Cruce de variables cuantitativas y cualitativas
+
+
+Comparemos las medias de las variables cuantitativas en función de cada especie.
 
 Para ello, dividamos el data frame por especies:
 
@@ -120,9 +123,12 @@ ping_chinstrap = datos[datos$species=="Chinstrap",]
 ping_gentoo = datos[datos$species=="Gentoo",]
 ```
 
+Para hacer estas comparaciones realizaremos, para cada variable, un diagrama de cajas, al que le añadiremos la media muestral en forma de punto rojo, así como su valor numérico.
+
+
 ## Longitud del pico
 
-Veamos la media de la longitud del pico de cada especie.
+Comparemos la longitud del pico de los pingüinos en función de la especie.
 
 ```{r, echo=FALSE}
 boxplot(bill_length_mm ~ species, data = datos,
@@ -136,7 +142,7 @@ text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex =
      col = "white")
 ```
 
-Notemos que los pinguinos de especie `Adelie` de media tienen el pico mas corto que las otras dos especies.
+Notemos que los pinguinos de especie `Adelie`, de media, tienen el pico más corto que las otras dos especies.
 
 ## Ancho del pico
 
@@ -152,7 +158,7 @@ text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex =
      col = "white")
 ```
 
-Notemos que los pinguinos de especie `Gentoo` de media tienen el pico menos ancho que las otras dos especies.
+Notemos que los pinguinos de especie `Gentoo`, de media, tienen el pico menos ancho que las otras especies.
 
 ## Longitud de la aleta
 
@@ -168,7 +174,7 @@ text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex =
      col = "white")
 ```
 
-Notemos que los pinguinos de especie `Gentoo` de media tienen la aleta más larga que las otras dos especies.
+Notemos que los pinguinos de especie `Gentoo`, de media, tienen la aleta más larga que las otras dos especies.
 
 ## Masa corporal
 
@@ -184,11 +190,12 @@ text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex =
      col = "white")
 ```
 
-Notemos que los pinguinos de especie `Gentoo` de media tienen mas masa corporal que las otras dos especies.
+Notemos que los pingüinos de especie `Gentoo`, de media, tienen mayor masa corporal que las otras dos especies.
+
 
 # Correlación de las variables
 
-Veamos si existe correlación, tanto positiva como negativa de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.
+Veamos si existe correlación, tanto positiva como negativa, de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.
 
 ```{r, warning=FALSE, echo=FALSE}
 library(psych)
@@ -197,7 +204,7 @@ nombres = c("Longitud pico", "Ancho pico", "Longitud aleta", "Masa corporal")
 corPlot(datos2, cex = 0.8,  main = "Matriz de correlación", labels = nombres)
 ```
 
-Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las alas de los pingüinos, es decir, a mayor masa corporal, mayor longitud de alas, lo que da a pensar que si hay una especie que tenga, en general, mayor peso, será porque el animal es más grande.
+Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las alas de los pingüinos; es decir, a mayor masa corporal, mayor longitud de alas. Este hecho nos sugiere suponer que si hay una especie que tenga, en general, mayor peso, será porque el animal en sí es más grande.
 
 También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.65) entre la longitud del pico y la masa corporal, y la longitud del pico y la longitud de la aleta.
 
@@ -207,9 +214,10 @@ No es de extrañar que en el apartado de las medias muestrales en función de ca
 
 **Nota:** las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población sin hacer ningun contraste de hipotesis.
 
+
 # Comparaciones geográficas
 
-Como hemos visto anteriormente, la única especie que se encuentra en las tres islas es la especie `Adelie`. Por tanto, compararemos las caracteristicas de esta especie en función de las islas.
+Como hemos visto anteriormente, la única especie que se encuentra en las tres islas es la especie `Adelie`. Es usual que, una misma especie de animal, si vive en distintas ubicaciones geográficas, presente diferencias fisiológicas; por tanto, sería interesante comparar las características de esta especie en función de la isla en la que vive.
 
 ```{r, echo=FALSE}
 par(mfrow=c(2,2))
