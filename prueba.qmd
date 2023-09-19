@@ -37,11 +37,12 @@ head(datos)
 ```
 
 
-Primero de todo, observemos que hay muestras que tienen valores desconocidos (NA), por tanto, vamos a eliminar dichas observaciones:
+Primero de todo, observemos que hay muestras que tienen valores desconocidos (NA), por tanto, vamos a eliminar dichas observaciones. Además, la variable `year` conviene que sea del tipo factor: 
 
 
 ```{r}
 datos = na.omit(datos)
+datos$year = as.factor(datos$year)
 summary(datos)
 ```
 
@@ -62,6 +63,16 @@ pie(prop.table(table(datos$island)),col = hcl.colors(3, "Blues 3"), main = "Prop
 pie(prop.table(table(datos$sex)), labels = c("Hembra", "Macho"), col = hcl.colors(3, "Fall"), main = "Sexo")
 pie(prop.table(table(datos$year)),col = hcl.colors(3, "Mint"), main = "Año del experimento")
 ```
+
+```{r echo=TRUE}
+par(plt = c(0.1, 0.86, 0.1, 0.8))
+par(mfrow=c(2,2))
+pie(table(datos$species), labels = paste0(names(table(datos$species)), " (", round(prop.table(table(datos$species)) * 100, 1), "%)"), col = hcl.colors(3, "Greens 3"), main = "Proporción de especies")
+pie(table(datos$island), labels = paste0(names(table(datos$island)), " (", round(prop.table(table(datos$island)) * 100, 1), "%)"), col = hcl.colors(3, "Blues 3"), main = "Proporción de cada isla")
+pie(table(datos$sex), labels = paste0(names(table(datos$sex)), " (", round(prop.table(table(datos$sex)) * 100, 1), "%)"), col = hcl.colors(3, "Fall"), main = "Sexo")
+pie(table(datos$year), labels = paste0(names(table(datos$year)), " (", round(prop.table(table(datos$year)) * 100, 1), "%)"), col = hcl.colors(3, "Mint"), main = "Año del experimento")
+```
+
 
 
 
