@@ -80,18 +80,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#descripción-de-los-datos" id="toc-descripción-de-los-datos" class="nav-link active" data-scroll-target="#descripción-de-los-datos">Descripción de los datos</a></li>
+  <li><a href="#descripción-de-los-datos" id="toc-descripción-de-los-datos" class="nav-link active" data-scroll-target="#descripción-de-los-datos">Descripción de los datos</a>
+  <ul class="collapse">
   <li><a href="#descripción-de-las-variables-cualitativas" id="toc-descripción-de-las-variables-cualitativas" class="nav-link" data-scroll-target="#descripción-de-las-variables-cualitativas">Descripción de las variables cualitativas</a></li>
-  <li><a href="#desripción-de-las-variables-cuantitativas" id="toc-desripción-de-las-variables-cuantitativas" class="nav-link" data-scroll-target="#desripción-de-las-variables-cuantitativas">Desripción de las variables cuantitativas</a></li>
+  <li><a href="#desripción-de-las-variables-cuantitativas" id="toc-desripción-de-las-variables-cuantitativas" class="nav-link" data-scroll-target="#desripción-de-las-variables-cuantitativas">Desripción de las variables cuantitativas</a>
+  <ul class="collapse">
+  <li><a href="#correlación-de-las-variables" id="toc-correlación-de-las-variables" class="nav-link" data-scroll-target="#correlación-de-las-variables">Correlación de las variables</a></li>
+  </ul></li>
+  </ul></li>
   <li><a href="#cruce-de-variables-cuantitativas-y-cualitativas" id="toc-cruce-de-variables-cuantitativas-y-cualitativas" class="nav-link" data-scroll-target="#cruce-de-variables-cuantitativas-y-cualitativas">Cruce de variables cuantitativas y cualitativas</a>
+  <ul class="collapse">
+  <li><a href="#comparación-por-especies" id="toc-comparación-por-especies" class="nav-link" data-scroll-target="#comparación-por-especies">Comparación por especies</a>
   <ul class="collapse">
   <li><a href="#longitud-del-pico" id="toc-longitud-del-pico" class="nav-link" data-scroll-target="#longitud-del-pico">Longitud del pico</a></li>
   <li><a href="#ancho-del-pico" id="toc-ancho-del-pico" class="nav-link" data-scroll-target="#ancho-del-pico">Ancho del pico</a></li>
   <li><a href="#longitud-de-la-aleta" id="toc-longitud-de-la-aleta" class="nav-link" data-scroll-target="#longitud-de-la-aleta">Longitud de la aleta</a></li>
   <li><a href="#masa-corporal" id="toc-masa-corporal" class="nav-link" data-scroll-target="#masa-corporal">Masa corporal</a></li>
   </ul></li>
-  <li><a href="#correlación-de-las-variables" id="toc-correlación-de-las-variables" class="nav-link" data-scroll-target="#correlación-de-las-variables">Correlación de las variables</a></li>
   <li><a href="#comparaciones-geográficas" id="toc-comparaciones-geográficas" class="nav-link" data-scroll-target="#comparaciones-geográficas">Comparaciones geográficas</a></li>
+  <li><a href="#comparación-por-sexo-de-cada-especie" id="toc-comparación-por-sexo-de-cada-especie" class="nav-link" data-scroll-target="#comparación-por-sexo-de-cada-especie">Comparación por sexo de cada especie</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -187,9 +195,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Notemos que los pingüinos de la especie <code>Adelie</code> se encuentran en las tres islas. En cambio, los pingüinos de la especie <code>Chinstrap</code> solo están en la isla <code>Dream</code>. Del mismo modo, los de la especie <code>Gentoo</code>solo habitan en la isla <code>Biscoe</code>.</p>
-</section>
-<section id="descripción-de-las-variables-cualitativas" class="level1">
-<h1>Descripción de las variables cualitativas</h1>
+<section id="descripción-de-las-variables-cualitativas" class="level2">
+<h2 class="anchored" data-anchor-id="descripción-de-las-variables-cualitativas">Descripción de las variables cualitativas</h2>
 <p>A continuación, mostraremos algunas representaciones visuales que dan una información descriptiva de los datos.</p>
 <p>Realizamos un diagrama de sectores de las variables <code>species</code>, <code>island</code>, <code>sex</code> y <code>year</code>, las variables de tipo factor.</p>
 <div class="cell">
@@ -198,15 +205,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="desripción-de-las-variables-cuantitativas" class="level1">
-<h1>Desripción de las variables cuantitativas</h1>
-<p>A continuación, realizaremos unos histogramas de las variables <code>bill_length_mm</code>, <code>bill_depth_mm</code>, <code>flipper_length_mm</code> y <code>body_mass_g</code> para ver a simple vista la distribución de la población. Se trata de las características fisiológicas del animal.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Realicemos una tabla que nos de información numérica de estas cuatro variables cuantitativas.</p>
+<section id="desripción-de-las-variables-cuantitativas" class="level2">
+<h2 class="anchored" data-anchor-id="desripción-de-las-variables-cuantitativas">Desripción de las variables cuantitativas</h2>
+<p>A continuación, realizaremos una tabla que nos de información numérica de estas cuatro variables cuantitativas.</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>               Long. Pico Ancho Pico Long. Aleta Masa Corporal
@@ -219,6 +220,20 @@ Max                 59.60      21.50      231.00       6300.00
 Sd                   5.47       1.97       14.02        805.22</code></pre>
 </div>
 </div>
+<section id="correlación-de-las-variables" class="level3">
+<h3 class="anchored" data-anchor-id="correlación-de-las-variables">Correlación de las variables</h3>
+<p>Veamos si existe correlación, tanto positiva como negativa, de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="prueba_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las alas de los pingüinos; es decir, a mayor masa corporal, mayor longitud de alas. Este hecho nos sugiere suponer que si hay una especie que tenga, en general, mayor peso, será porque el animal en sí es más grande.</p>
+<p>También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.65) entre la longitud del pico y la masa corporal, y la longitud del pico y la longitud de la aleta.</p>
+<p>Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58) entre la longitud de la aleta y el ancho del pico, es decir, cuanto más larga es la aleta, menos ancho el pico y viceversa.</p>
+<p>No es de extrañar que en el apartado de las medias muestrales en función de cada especie nos saliera que los pingüinos de la especie <code>Gentoo</code> son los que tienen más masa corporal y los que más longitud de la aleta poseen.</p>
+</section>
+</section>
 </section>
 <section id="cruce-de-variables-cuantitativas-y-cualitativas" class="level1">
 <h1>Cruce de variables cuantitativas y cualitativas</h1>
@@ -230,8 +245,10 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ping_gentoo <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para hacer estas comparaciones realizaremos, para cada variable, un diagrama de cajas, al que le añadiremos la media muestral en forma de punto rojo, así como su valor numérico.</p>
-<section id="longitud-del-pico" class="level2">
-<h2 class="anchored" data-anchor-id="longitud-del-pico">Longitud del pico</h2>
+<section id="comparación-por-especies" class="level2">
+<h2 class="anchored" data-anchor-id="comparación-por-especies">Comparación por especies</h2>
+<section id="longitud-del-pico" class="level3">
+<h3 class="anchored" data-anchor-id="longitud-del-pico">Longitud del pico</h3>
 <p>Comparemos la longitud del pico de los pingüinos en función de la especie.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -240,8 +257,8 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 </div>
 <p>Notemos que los pinguinos de especie <code>Adelie</code>, de media, tienen el pico más corto que las otras dos especies.</p>
 </section>
-<section id="ancho-del-pico" class="level2">
-<h2 class="anchored" data-anchor-id="ancho-del-pico">Ancho del pico</h2>
+<section id="ancho-del-pico" class="level3">
+<h3 class="anchored" data-anchor-id="ancho-del-pico">Ancho del pico</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="prueba_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
@@ -249,8 +266,8 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 </div>
 <p>Notemos que los pinguinos de especie <code>Gentoo</code>, de media, tienen el pico menos ancho que las otras especies.</p>
 </section>
-<section id="longitud-de-la-aleta" class="level2">
-<h2 class="anchored" data-anchor-id="longitud-de-la-aleta">Longitud de la aleta</h2>
+<section id="longitud-de-la-aleta" class="level3">
+<h3 class="anchored" data-anchor-id="longitud-de-la-aleta">Longitud de la aleta</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="prueba_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
@@ -258,8 +275,8 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 </div>
 <p>Notemos que los pinguinos de especie <code>Gentoo</code>, de media, tienen la aleta más larga que las otras dos especies.</p>
 </section>
-<section id="masa-corporal" class="level2">
-<h2 class="anchored" data-anchor-id="masa-corporal">Masa corporal</h2>
+<section id="masa-corporal" class="level3">
+<h3 class="anchored" data-anchor-id="masa-corporal">Masa corporal</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="prueba_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
@@ -268,29 +285,29 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <p>Notemos que los pingüinos de especie <code>Gentoo</code>, de media, tienen mayor masa corporal que las otras dos especies.</p>
 </section>
 </section>
-<section id="correlación-de-las-variables" class="level1">
-<h1>Correlación de las variables</h1>
-<p>Veamos si existe correlación, tanto positiva como negativa, de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.</p>
+<section id="comparaciones-geográficas" class="level2">
+<h2 class="anchored" data-anchor-id="comparaciones-geográficas">Comparaciones geográficas</h2>
+<p>Como hemos visto anteriormente, la única especie que se encuentra en las tres islas es la especie <code>Adelie</code>. Es usual que, una misma especie de animal, si vive en distintas ubicaciones geográficas, presente diferencias fisiológicas; por tanto, sería interesante comparar las características de esta especie en función de la isla en la que vive.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="prueba_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las alas de los pingüinos; es decir, a mayor masa corporal, mayor longitud de alas. Este hecho nos sugiere suponer que si hay una especie que tenga, en general, mayor peso, será porque el animal en sí es más grande.</p>
-<p>También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.65) entre la longitud del pico y la masa corporal, y la longitud del pico y la longitud de la aleta.</p>
-<p>Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58) entre la longitud de la aleta y el ancho del pico, es decir, cuanto más larga es la aleta, menos ancho el pico y viceversa.</p>
-<p>No es de extrañar que en el apartado de las medias muestrales en función de cada especie nos saliera que los pingüinos de la especie <code>Gentoo</code> son los que tienen más masa corporal y los que más longitud de la aleta poseen.</p>
+<p>Notemos que, a simple vista, no hay mucha diferencia en la especie <code>Adelie</code> en función de la isla en la que habite.</p>
+</section>
+<section id="comparación-por-sexo-de-cada-especie" class="level2">
+<h2 class="anchored" data-anchor-id="comparación-por-sexo-de-cada-especie">Comparación por sexo de cada especie</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos<span class="sc">$</span>sex, datos<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        
+         Adelie Chinstrap Gentoo
+  female     73        34     58
+  male       73        34     61</code></pre>
+</div>
+</div>
 <p><strong>Nota:</strong> las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población sin hacer ningun contraste de hipotesis.</p>
 </section>
-<section id="comparaciones-geográficas" class="level1">
-<h1>Comparaciones geográficas</h1>
-<p>Como hemos visto anteriormente, la única especie que se encuentra en las tres islas es la especie <code>Adelie</code>. Es usual que, una misma especie de animal, si vive en distintas ubicaciones geográficas, presente diferencias fisiológicas; por tanto, sería interesante comparar las características de esta especie en función de la isla en la que vive.</p>
-<div class="cell">
-<div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Notemos que, a simple vista, no hay mucha diferencia en la especie <code>Adelie</code> en función de la isla en la que habite.</p>
 </section>
 
 </main>

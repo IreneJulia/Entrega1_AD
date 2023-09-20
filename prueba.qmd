@@ -50,7 +50,7 @@ table(datos$island, datos$species)
 
 Notemos que los pingüinos de la especie `Adelie` se encuentran en las tres islas. En cambio, los pingüinos de la especie `Chinstrap` solo están en la isla `Dream`. Del mismo modo, los de la especie `Gentoo`solo habitan en la isla `Biscoe`.
 
-# Descripción de las variables cualitativas
+## Descripción de las variables cualitativas
 
 A continuación, mostraremos algunas representaciones visuales que dan una información descriptiva de los datos.
 
@@ -67,23 +67,9 @@ pie(table(datos$year), labels = paste0(names(table(datos$year)), " (", round(pro
 
 
 
-# Desripción de las variables cuantitativas
+## Desripción de las variables cuantitativas
 
-A continuación, realizaremos unos histogramas de las variables `bill_length_mm`, `bill_depth_mm`, `flipper_length_mm` y `body_mass_g` para ver a simple vista la distribución de la población. Se trata de las características fisiológicas del animal.
-
-```{r, echo=FALSE}
-par(mfrow=c(2,2))
-hist(datos$bill_length_mm, main='Longitud del pico (mm)', breaks = 30, col = 'lightblue',
-     xlab = "Longitud pico", ylab = "Frecuencia")
-hist(datos$bill_depth_mm, main='Anchura del pico (mm)', breaks = 35, col = 'coral3',
-     xlab = "Ancho pico", ylab = "Frecuencia")
-hist(datos$flipper_length_mm, main='Longitud de la aleta (mm)', breaks = 30, col = 'lightgreen', xlab = "Longitud aleta", ylab = "Frecuencia")
-hist(datos$body_mass_g, main='Masa Corporal (g)', breaks = 30, col = 'pink',
-     xlab = "Masa corporal", ylab = "Frecuencia")
-```
-
-
-Realicemos una tabla que nos de información numérica de estas cuatro variables cuantitativas.
+A continuación, realizaremos una tabla que nos de información numérica de estas cuatro variables cuantitativas.
 
 
 ```{r, echo=FALSE}
@@ -110,90 +96,7 @@ sumary_sd
 
 
 
-# Cruce de variables cuantitativas y cualitativas
-
-
-Comparemos las medias de las variables cuantitativas en función de cada especie.
-
-Para ello, dividamos el data frame por especies:
-
-```{r}
-ping_adelie = datos[datos$species=="Adelie",]
-ping_chinstrap = datos[datos$species=="Chinstrap",]
-ping_gentoo = datos[datos$species=="Gentoo",]
-```
-
-Para hacer estas comparaciones realizaremos, para cada variable, un diagrama de cajas, al que le añadiremos la media muestral en forma de punto rojo, así como su valor numérico.
-
-
-## Longitud del pico
-
-Comparemos la longitud del pico de los pingüinos en función de la especie.
-
-```{r, echo=FALSE}
-boxplot(bill_length_mm ~ species, data = datos,
-        xlab = "", ylab = "Longitud pico (mm)",
-        main = "Longitud del pico por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
-medias = c(mean(ping_adelie$bill_length_mm), mean(ping_chinstrap$bill_length_mm), 
-                  mean(ping_gentoo$bill_length_mm))
-# añadimos medias
-points(x = 1:length(medias), y = medias, pch = 19, col = "red")
-text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
-     col = "white")
-```
-
-Notemos que los pinguinos de especie `Adelie`, de media, tienen el pico más corto que las otras dos especies.
-
-## Ancho del pico
-
-```{r, echo=FALSE}
-boxplot(bill_depth_mm ~ species, data = datos,
-        xlab = "", ylab = "Ancho pico (mm)",
-        main = "Ancho del pico por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
-medias = c(mean(ping_adelie$bill_depth_mm), mean(ping_chinstrap$bill_depth_mm), 
-                  mean(ping_gentoo$bill_depth_mm))
-# añadimos medias
-points(x = 1:length(medias), y = medias, pch = 19, col = "red")
-text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
-     col = "white")
-```
-
-Notemos que los pinguinos de especie `Gentoo`, de media, tienen el pico menos ancho que las otras especies.
-
-## Longitud de la aleta
-
-```{r, echo=FALSE}
-boxplot(flipper_length_mm ~ species, data = datos,
-        xlab = "", ylab = "Longitud aleta (mm)",
-        main = "Longitud de la aleta por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
-medias = c(mean(ping_adelie$flipper_length_mm), mean(ping_chinstrap$flipper_length_mm), 
-                  mean(ping_gentoo$flipper_length_mm))
-# añadimos medias
-points(x = 1:length(medias), y = medias, pch = 19, col = "red")
-text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
-     col = "white")
-```
-
-Notemos que los pinguinos de especie `Gentoo`, de media, tienen la aleta más larga que las otras dos especies.
-
-## Masa corporal
-
-```{r, echo=FALSE}
-boxplot(body_mass_g ~ species, data = datos,
-        xlab = "", ylab = "Masa corporal (g)",
-        main = "Masa corporal por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
-medias = c(mean(ping_adelie$body_mass_g), mean(ping_chinstrap$body_mass_g), 
-                  mean(ping_gentoo$body_mass_g))
-# añadimos medias
-points(x = 1:length(medias), y = medias, pch = 19, col = "red")
-text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
-     col = "white")
-```
-
-Notemos que los pingüinos de especie `Gentoo`, de media, tienen mayor masa corporal que las otras dos especies.
-
-
-# Correlación de las variables
+### Correlación de las variables
 
 Veamos si existe correlación, tanto positiva como negativa, de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.
 
@@ -212,10 +115,93 @@ Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58
 
 No es de extrañar que en el apartado de las medias muestrales en función de cada especie nos saliera que los pingüinos de la especie `Gentoo` son los que tienen más masa corporal y los que más longitud de la aleta poseen.
 
-**Nota:** las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población sin hacer ningun contraste de hipotesis.
+# Cruce de variables cuantitativas y cualitativas
 
 
-# Comparaciones geográficas
+Comparemos las medias de las variables cuantitativas en función de cada especie.
+
+Para ello, dividamos el data frame por especies:
+
+```{r}
+ping_adelie = datos[datos$species=="Adelie",]
+ping_chinstrap = datos[datos$species=="Chinstrap",]
+ping_gentoo = datos[datos$species=="Gentoo",]
+```
+
+Para hacer estas comparaciones realizaremos, para cada variable, un diagrama de cajas, al que le añadiremos la media muestral en forma de punto rojo, así como su valor numérico.
+
+## Comparación por especies
+
+
+### Longitud del pico
+
+Comparemos la longitud del pico de los pingüinos en función de la especie.
+
+```{r, echo=FALSE}
+boxplot(bill_length_mm ~ species, data = datos,
+        xlab = "", ylab = "Longitud pico (mm)",
+        main = "Longitud del pico por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
+medias = c(mean(ping_adelie$bill_length_mm), mean(ping_chinstrap$bill_length_mm), 
+                  mean(ping_gentoo$bill_length_mm))
+# añadimos medias
+points(x = 1:length(medias), y = medias, pch = 19, col = "red")
+text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
+     col = "white")
+```
+
+Notemos que los pinguinos de especie `Adelie`, de media, tienen el pico más corto que las otras dos especies.
+
+### Ancho del pico
+
+```{r, echo=FALSE}
+boxplot(bill_depth_mm ~ species, data = datos,
+        xlab = "", ylab = "Ancho pico (mm)",
+        main = "Ancho del pico por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
+medias = c(mean(ping_adelie$bill_depth_mm), mean(ping_chinstrap$bill_depth_mm), 
+                  mean(ping_gentoo$bill_depth_mm))
+# añadimos medias
+points(x = 1:length(medias), y = medias, pch = 19, col = "red")
+text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
+     col = "white")
+```
+
+Notemos que los pinguinos de especie `Gentoo`, de media, tienen el pico menos ancho que las otras especies.
+
+### Longitud de la aleta
+
+```{r, echo=FALSE}
+boxplot(flipper_length_mm ~ species, data = datos,
+        xlab = "", ylab = "Longitud aleta (mm)",
+        main = "Longitud de la aleta por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
+medias = c(mean(ping_adelie$flipper_length_mm), mean(ping_chinstrap$flipper_length_mm), 
+                  mean(ping_gentoo$flipper_length_mm))
+# añadimos medias
+points(x = 1:length(medias), y = medias, pch = 19, col = "red")
+text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
+     col = "white")
+```
+
+Notemos que los pinguinos de especie `Gentoo`, de media, tienen la aleta más larga que las otras dos especies.
+
+### Masa corporal
+
+```{r, echo=FALSE}
+boxplot(body_mass_g ~ species, data = datos,
+        xlab = "", ylab = "Masa corporal (g)",
+        main = "Masa corporal por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
+medias = c(mean(ping_adelie$body_mass_g), mean(ping_chinstrap$body_mass_g), 
+                  mean(ping_gentoo$body_mass_g))
+# añadimos medias
+points(x = 1:length(medias), y = medias, pch = 19, col = "red")
+text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
+     col = "white")
+```
+
+Notemos que los pingüinos de especie `Gentoo`, de media, tienen mayor masa corporal que las otras dos especies.
+
+
+
+## Comparaciones geográficas
 
 Como hemos visto anteriormente, la única especie que se encuentra en las tres islas es la especie `Adelie`. Es usual que, una misma especie de animal, si vive en distintas ubicaciones geográficas, presente diferencias fisiológicas; por tanto, sería interesante comparar las características de esta especie en función de la isla en la que vive.
 
@@ -228,3 +214,14 @@ boxplot(body_mass_g~island, data = ping_adelie, ylab = " ", main = "Masa corpora
 ```
 
 Notemos que, a simple vista, no hay mucha diferencia en la especie `Adelie` en función de la isla en la que habite.
+
+## Comparación por sexo de cada especie
+
+
+```{r}
+table(datos$sex, datos$species)
+```
+
+
+
+**Nota:** las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población sin hacer ningun contraste de hipotesis.
