@@ -47,7 +47,7 @@ count_NA = function(x){
 datos[count_NA(datos),]
 ```
 
-Estas observaciones presentan inconvenientes a la hora de tractar los datos, por tanto vamos a eliminarlas. Además, la variable `year` conviene que sea del tipo factor:
+Estas observaciones presentan inconvenientes a la hora de tratar los datos, por tanto vamos a eliminarlas. Además, la variable `year` conviene que sea del tipo factor:
 
 ```{r}
 datos = na.omit(datos)
@@ -81,12 +81,8 @@ pie(table(datos$year), labels = paste0(names(table(datos$year)), " (", round(pro
 
 ## Desripción de las variables cuantitativas
 
-<<<<<<< HEAD
 A continuación, realizaremos una tabla que nos de información numérica de estas cuatro variables cuantitativas, que corresponden con las características antropométricas de los pingüinos.
 
-=======
-A continuación, realizaremos una tabla que nos de información numérica de las cuatro variables cuantitativas, que corresponden con las características antropométricas de los pingüinos.
->>>>>>> a5659bfd41c697014a278764c7cddaee5d77cf21
 
 ```{r, echo=FALSE}
 resumen = function(x){
