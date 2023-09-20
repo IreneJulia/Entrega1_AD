@@ -81,8 +81,12 @@ pie(table(datos$year), labels = paste0(names(table(datos$year)), " (", round(pro
 
 ## Desripción de las variables cuantitativas
 
+<<<<<<< HEAD
 A continuación, realizaremos una tabla que nos de información numérica de estas cuatro variables cuantitativas, que corresponden con las características antropométricas de los pingüinos.
 
+=======
+A continuación, realizaremos una tabla que nos de información numérica de las cuatro variables cuantitativas, que corresponden con las características antropométricas de los pingüinos.
+>>>>>>> f6a795281a37d65dbfa5a3adcf98c13cf85896fb
 
 ```{r, echo=FALSE}
 resumen = function(x){
