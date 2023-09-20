@@ -98,7 +98,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#masa-corporal" id="toc-masa-corporal" class="nav-link" data-scroll-target="#masa-corporal">Masa corporal</a></li>
   </ul></li>
   <li><a href="#comparaciones-geográficas" id="toc-comparaciones-geográficas" class="nav-link" data-scroll-target="#comparaciones-geográficas">Comparaciones geográficas</a></li>
-  <li><a href="#comparación-por-sexo-de-cada-especie" id="toc-comparación-por-sexo-de-cada-especie" class="nav-link" data-scroll-target="#comparación-por-sexo-de-cada-especie">Comparación por sexo de cada especie</a></li>
+  <li><a href="#comparación-por-sexo-de-cada-especie" id="toc-comparación-por-sexo-de-cada-especie" class="nav-link" data-scroll-target="#comparación-por-sexo-de-cada-especie">Comparación por sexo de cada especie</a>
+  <ul class="collapse">
+  <li><a href="#especie-adelie" id="toc-especie-adelie" class="nav-link" data-scroll-target="#especie-adelie">Especie Adelie</a></li>
+  <li><a href="#especie-chinstrap" id="toc-especie-chinstrap" class="nav-link" data-scroll-target="#especie-chinstrap">Especie Chinstrap</a></li>
+  <li><a href="#especie-gentoo" id="toc-especie-gentoo" class="nav-link" data-scroll-target="#especie-gentoo">Especie Gentoo</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -130,7 +135,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Con lo que sabéis de R base, realizad un análisis exploratorio de datos y redactad un reporte con los hallazgos más importantes. No olvidéis agregar en el reporte el URL de vuestro repositorio de GitHub.</strong></p>
 <section id="descripción-de-los-datos" class="level1">
@@ -150,23 +155,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 8
-  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
-  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;
-1 Adelie  Torgersen           39.1          18.7               181        3750
-2 Adelie  Torgersen           39.5          17.4               186        3800
-3 Adelie  Torgersen           40.3          18                 195        3250
-4 Adelie  Torgersen           NA            NA                  NA          NA
-5 Adelie  Torgersen           36.7          19.3               193        3450
-6 Adelie  Torgersen           39.3          20.6               190        3650
-# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;</code></pre>
+<pre><code>  species    island bill_length_mm bill_depth_mm flipper_length_mm body_mass_g
+1  Adelie Torgersen           39.1          18.7               181        3750
+2  Adelie Torgersen           39.5          17.4               186        3800
+3  Adelie Torgersen           40.3          18.0               195        3250
+4  Adelie Torgersen             NA            NA                NA          NA
+5  Adelie Torgersen           36.7          19.3               193        3450
+6  Adelie Torgersen           39.3          20.6               190        3650
+     sex year
+1   male 2007
+2 female 2007
+3 female 2007
+4   &lt;NA&gt; 2007
+5 female 2007
+6   male 2007</code></pre>
 </div>
 </div>
-<p>Primero de todo, observemos que hay muestras que tienen valores desconocidos (NA), por tanto, vamos a eliminar dichas observaciones. Además, la variable <code>year</code> conviene que sea del tipo factor:</p>
+<p>Primero de todo, observemos que hay muestras que tienen valores desconocidos (NA). Veamos cuales son:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">na.omit</span>(datos)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>year <span class="ot">=</span> <span class="fu">as.factor</span>(datos<span class="sc">$</span>year)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    species    island bill_length_mm bill_depth_mm flipper_length_mm
+4    Adelie Torgersen             NA            NA                NA
+9    Adelie Torgersen           34.1          18.1               193
+10   Adelie Torgersen           42.0          20.2               190
+11   Adelie Torgersen           37.8          17.1               186
+12   Adelie Torgersen           37.8          17.3               180
+48   Adelie     Dream           37.5          18.9               179
+179  Gentoo    Biscoe           44.5          14.3               216
+219  Gentoo    Biscoe           46.2          14.4               214
+257  Gentoo    Biscoe           47.3          13.8               216
+269  Gentoo    Biscoe           44.5          15.7               217
+272  Gentoo    Biscoe             NA            NA                NA
+    body_mass_g  sex year
+4            NA &lt;NA&gt; 2007
+9          3475 &lt;NA&gt; 2007
+10         4250 &lt;NA&gt; 2007
+11         3300 &lt;NA&gt; 2007
+12         3700 &lt;NA&gt; 2007
+48         2975 &lt;NA&gt; 2007
+179        4100 &lt;NA&gt; 2007
+219        4650 &lt;NA&gt; 2008
+257        4725 &lt;NA&gt; 2009
+269        4875 &lt;NA&gt; 2009
+272          NA &lt;NA&gt; 2009</code></pre>
+</div>
+</div>
+<p>Estas observaciones presentan inconvenientes a la hora de tractar los datos, por tanto vamos a eliminarlas. Además, la variable <code>year</code> conviene que sea del tipo factor:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>datos <span class="ot">=</span> <span class="fu">na.omit</span>(datos)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>datos<span class="sc">$</span>year <span class="ot">=</span> <span class="fu">as.factor</span>(datos<span class="sc">$</span>year)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(datos)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      species          island    bill_length_mm  bill_depth_mm  
  Adelie   :146   Biscoe   :163   Min.   :32.10   Min.   :13.10  
@@ -201,13 +239,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Realizamos un diagrama de sectores de las variables <code>species</code>, <code>island</code>, <code>sex</code> y <code>year</code>, las variables de tipo factor.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+<p><img src="prueba_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 <section id="desripción-de-las-variables-cuantitativas" class="level2">
 <h2 class="anchored" data-anchor-id="desripción-de-las-variables-cuantitativas">Desripción de las variables cuantitativas</h2>
-<p>A continuación, realizaremos una tabla que nos de información numérica de estas cuatro variables cuantitativas.</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD A continuación, realizaremos una tabla que nos de información numérica de estas cuatro variables cuantitativas, que corresponden con las características antropométricas de los pingüinos.</p>
+<p>======= A continuación, realizaremos una tabla que nos de información numérica de las cuatro variables cuantitativas, que corresponden con las características antropométricas de los pingüinos. &gt;&gt;&gt;&gt;&gt;&gt;&gt; a5659bfd41c697014a278764c7cddaee5d77cf21</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>               Long. Pico Ancho Pico Long. Aleta Masa Corporal
@@ -225,13 +264,12 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <p>Veamos si existe correlación, tanto positiva como negativa, de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="prueba_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las alas de los pingüinos; es decir, a mayor masa corporal, mayor longitud de alas. Este hecho nos sugiere suponer que si hay una especie que tenga, en general, mayor peso, será porque el animal en sí es más grande.</p>
 <p>También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.65) entre la longitud del pico y la masa corporal, y la longitud del pico y la longitud de la aleta.</p>
 <p>Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58) entre la longitud de la aleta y el ancho del pico, es decir, cuanto más larga es la aleta, menos ancho el pico y viceversa.</p>
-<p>No es de extrañar que en el apartado de las medias muestrales en función de cada especie nos saliera que los pingüinos de la especie <code>Gentoo</code> son los que tienen más masa corporal y los que más longitud de la aleta poseen.</p>
 </section>
 </section>
 </section>
@@ -240,9 +278,9 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <p>Comparemos las medias de las variables cuantitativas en función de cada especie.</p>
 <p>Para ello, dividamos el data frame por especies:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ping_adelie <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Adelie"</span>,]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ping_chinstrap <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Chinstrap"</span>,]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ping_gentoo <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ping_adelie <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Adelie"</span>,]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ping_chinstrap <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Chinstrap"</span>,]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ping_gentoo <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para hacer estas comparaciones realizaremos, para cada variable, un diagrama de cajas, al que le añadiremos la media muestral en forma de punto rojo, así como su valor numérico.</p>
 <section id="comparación-por-especies" class="level2">
@@ -252,7 +290,7 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <p>Comparemos la longitud del pico de los pingüinos en función de la especie.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="672"></p>
+<p><img src="prueba_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Notemos que los pinguinos de especie <code>Adelie</code>, de media, tienen el pico más corto que las otras dos especies.</p>
@@ -261,7 +299,7 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <h3 class="anchored" data-anchor-id="ancho-del-pico">Ancho del pico</h3>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+<p><img src="prueba_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Notemos que los pinguinos de especie <code>Gentoo</code>, de media, tienen el pico menos ancho que las otras especies.</p>
@@ -270,7 +308,7 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <h3 class="anchored" data-anchor-id="longitud-de-la-aleta">Longitud de la aleta</h3>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="672"></p>
+<p><img src="prueba_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Notemos que los pinguinos de especie <code>Gentoo</code>, de media, tienen la aleta más larga que las otras dos especies.</p>
@@ -279,10 +317,11 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <h3 class="anchored" data-anchor-id="masa-corporal">Masa corporal</h3>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<p><img src="prueba_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Notemos que los pingüinos de especie <code>Gentoo</code>, de media, tienen mayor masa corporal que las otras dos especies.</p>
+<p>No es de extrañar los resultados que han salido, puesto que la matriz de correlación que hemos presentado al principio indicaba una fuerte dependencia positiva entre <code>flipper_length_mm</code> y <code>body_mass_g</code>, y los pingüinos de la especie <code>Gentoo</code> son los que tienen de media más masa corporal y los que más longitud de la aleta poseen.</p>
 </section>
 </section>
 <section id="comparaciones-geográficas" class="level2">
@@ -290,7 +329,7 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <p>Como hemos visto anteriormente, la única especie que se encuentra en las tres islas es la especie <code>Adelie</code>. Es usual que, una misma especie de animal, si vive en distintas ubicaciones geográficas, presente diferencias fisiológicas; por tanto, sería interesante comparar las características de esta especie en función de la isla en la que vive.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="prueba_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="672"></p>
+<p><img src="prueba_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>Notemos que, a simple vista, no hay mucha diferencia en la especie <code>Adelie</code> en función de la isla en la que habite.</p>
@@ -298,7 +337,7 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <section id="comparación-por-sexo-de-cada-especie" class="level2">
 <h2 class="anchored" data-anchor-id="comparación-por-sexo-de-cada-especie">Comparación por sexo de cada especie</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos<span class="sc">$</span>sex, datos<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(datos<span class="sc">$</span>sex, datos<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        
          Adelie Chinstrap Gentoo
@@ -306,7 +345,32 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
   male       73        34     61</code></pre>
 </div>
 </div>
+<section id="especie-adelie" class="level3">
+<h3 class="anchored" data-anchor-id="especie-adelie">Especie Adelie</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="prueba_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="especie-chinstrap" class="level3">
+<h3 class="anchored" data-anchor-id="especie-chinstrap">Especie Chinstrap</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="prueba_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="especie-gentoo" class="level3">
+<h3 class="anchored" data-anchor-id="especie-gentoo">Especie Gentoo</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="prueba_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Como podemos observar, los machos de las tres especies són de mayores dimensiones que las hembras.</p>
 <p><strong>Nota:</strong> las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población sin hacer ningun contraste de hipotesis.</p>
+</section>
 </section>
 </section>
 
