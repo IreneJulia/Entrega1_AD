@@ -10,7 +10,7 @@ editor_options:
 
 ```{r, warning=FALSE}
 library(palmerpenguins)
-datos <- penguins
+datos <- data.frame(penguins)
 ```
 
 **Con lo que sabéis de R base, realizad un análisis exploratorio de datos y redactad un reporte con los hallazgos más importantes. No olvidéis agregar en el reporte el URL de vuestro repositorio de GitHub.**
@@ -34,7 +34,20 @@ A continuación, visualicemos las primeras muestras del data frame:
 head(datos)
 ```
 
-Primero de todo, observemos que hay muestras que tienen valores desconocidos (NA), por tanto, vamos a eliminar dichas observaciones. Además, la variable `year` conviene que sea del tipo factor:
+Primero de todo, observemos que hay muestras que tienen valores desconocidos (NA). Veamos cuales son:
+
+```{r, echo = FALSE}
+count_NA = function(x){
+  idx = c()
+  for (i in 1:nrow(datos)){
+    if (sum(is.na(datos[i,]))!=0) idx[length(idx)+1] = i
+  }
+  return(idx)
+}
+datos[count_NA(datos),]
+```
+
+Estas observaciones presentan inconvenientes a la hora de tractar los datos, por tanto vamos a eliminarlas. Además, la variable `year` conviene que sea del tipo factor:
 
 ```{r}
 datos = na.omit(datos)
@@ -43,7 +56,6 @@ summary(datos)
 ```
 
 A continuación, mostremos una tabla de frecuencias absolutas que nos indique cuantas especies hay en cada isla:
-
 ```{r, echo=FALSE}
 table(datos$island, datos$species)
 ```
@@ -69,8 +81,7 @@ pie(table(datos$year), labels = paste0(names(table(datos$year)), " (", round(pro
 
 ## Desripción de las variables cuantitativas
 
-A continuación, realizaremos una tabla que nos de información numérica de estas cuatro variables cuantitativas.
-
+A continuación, realizaremos una tabla que nos de información numérica de las cuatro variables cuantitativas, que corresponden con las características antropométricas de los pingüinos.
 
 ```{r, echo=FALSE}
 resumen = function(x){
@@ -94,8 +105,6 @@ colnames(sumary_sd) = c("Long. Pico", "Ancho Pico", "Long. Aleta", "Masa Corpora
 sumary_sd
 ```
 
-
-
 ### Correlación de las variables
 
 Veamos si existe correlación, tanto positiva como negativa, de las variables numéricas. Para ello, mostraremos una matriz de correlaciones.
@@ -113,7 +122,6 @@ También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.6
 
 Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58) entre la longitud de la aleta y el ancho del pico, es decir, cuanto más larga es la aleta, menos ancho el pico y viceversa.
 
-No es de extrañar que en el apartado de las medias muestrales en función de cada especie nos saliera que los pingüinos de la especie `Gentoo` son los que tienen más masa corporal y los que más longitud de la aleta poseen.
 
 # Cruce de variables cuantitativas y cualitativas
 
@@ -199,6 +207,7 @@ text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex =
 
 Notemos que los pingüinos de especie `Gentoo`, de media, tienen mayor masa corporal que las otras dos especies.
 
+No es de extrañar los resultados que han salido, puesto que la matriz de correlación que hemos presentado al principio indicaba una fuerte dependencia positiva entre `flipper_length_mm` y `body_mass_g`, y los pingüinos de la especie `Gentoo` son los que tienen de media más masa corporal y los que más longitud de la aleta poseen.
 
 
 ## Comparaciones geográficas
@@ -206,6 +215,7 @@ Notemos que los pingüinos de especie `Gentoo`, de media, tienen mayor masa corp
 Como hemos visto anteriormente, la única especie que se encuentra en las tres islas es la especie `Adelie`. Es usual que, una misma especie de animal, si vive en distintas ubicaciones geográficas, presente diferencias fisiológicas; por tanto, sería interesante comparar las características de esta especie en función de la isla en la que vive.
 
 ```{r, echo=FALSE}
+par(plt = c(0.1,0.9,0.25,0.8))
 par(mfrow=c(2,2))
 boxplot(bill_length_mm~island, data = ping_adelie, ylab = " ", main = "Longitud del pico", col = hcl.colors(4, "Temps"), xlab = "")
 boxplot(bill_depth_mm~island, data = ping_adelie, ylab = " ", main = "Anchura del pico", col = hcl.colors(4, "Temps"), xlab = "")
@@ -222,6 +232,37 @@ Notemos que, a simple vista, no hay mucha diferencia en la especie `Adelie` en f
 table(datos$sex, datos$species)
 ```
 
+### Especie Adelie
 
+```{r, echo=FALSE}
+par(plt = c(0.1,0.9,0.25,0.8))
+par(mfrow=c(2,2))
+boxplot(bill_length_mm~sex, data = ping_adelie, ylab = " ", main = "Longitud del pico", col = hcl.colors(2, "Earth"), xlab = "")
+boxplot(bill_depth_mm~sex, data = ping_adelie, ylab = " ", main = "Anchura del pico", col = hcl.colors(2, "Earth"), xlab = "")
+boxplot(flipper_length_mm~sex, data = ping_adelie, ylab = " ", main = "Longitud de la aleta", col = hcl.colors(2, "Earth"), xlab = "")
+boxplot(body_mass_g~sex, data = ping_adelie, ylab = " ", main = "Masa corporal", col = hcl.colors(2, "Earth"), xlab = "")
+```
+
+### Especie Chinstrap
+```{r, echo=FALSE}
+par(plt = c(0.1,0.9,0.25,0.8))
+par(mfrow=c(2,2))
+boxplot(bill_length_mm~sex, data = ping_chinstrap, ylab = " ", main = "Longitud del pico", col = hcl.colors(2, "Red-Green"), xlab = "")
+boxplot(bill_depth_mm~sex, data = ping_chinstrap, ylab = " ", main = "Anchura del pico", col = hcl.colors(2, "Red-Green"), xlab = "")
+boxplot(flipper_length_mm~sex, data = ping_chinstrap, ylab = " ", main = "Longitud de la aleta", col = hcl.colors(2, "Red-Green"), xlab = "")
+boxplot(body_mass_g~sex, data = ping_chinstrap, ylab = " ", main = "Masa corporal", col = hcl.colors(2, "Red-Green"), xlab = "")
+```
+
+### Especie Gentoo
+```{r, echo=FALSE}
+par(plt = c(0.1,0.9,0.25,0.8))
+par(mfrow=c(2,2))
+boxplot(bill_length_mm~sex, data = ping_gentoo, ylab = " ", main = "Longitud del pico", col = hcl.colors(2, "Cividis"), xlab = "")
+boxplot(bill_depth_mm~sex, data = ping_gentoo, ylab = " ", main = "Anchura del pico", col = hcl.colors(2, "Cividis"), xlab = "")
+boxplot(flipper_length_mm~sex, data = ping_gentoo, ylab = " ", main = "Longitud de la aleta", col = hcl.colors(2, "Cividis"), xlab = "")
+boxplot(body_mass_g~sex, data = ping_gentoo, ylab = " ", main = "Masa corporal", col = hcl.colors(2, "Cividis"), xlab = "")
+```
+
+Como podemos observar, los machos de las tres especies són de mayores dimensiones que las hembras.
 
 **Nota:** las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población sin hacer ningun contraste de hipotesis.
