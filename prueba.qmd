@@ -239,30 +239,30 @@ table(datos$sex, datos$species)
 ```{r, echo=FALSE}
 par(plt = c(0.1,0.9,0.25,0.8))
 par(mfrow=c(2,2))
-boxplot(bill_length_mm~sex, data = ping_adelie, ylab = " ", main = "Longitud del pico", col = hcl.colors(3, "Earth"), xlab = "")
-boxplot(bill_depth_mm~sex, data = ping_adelie, ylab = " ", main = "Anchura del pico", col = hcl.colors(3, "Earth"), xlab = "")
-boxplot(flipper_length_mm~sex, data = ping_adelie, ylab = " ", main = "Longitud de la aleta", col = hcl.colors(3, "Earth"), xlab = "")
-boxplot(body_mass_g~sex, data = ping_adelie, ylab = " ", main = "Masa corporal", col = hcl.colors(3, "Earth"), xlab = "")
+boxplot(bill_length_mm~sex, data = ping_adelie, ylab = " ", main = "Longitud del pico", col = c("tan4", "steelblue1"), xlab = "")
+boxplot(bill_depth_mm~sex, data = ping_adelie, ylab = " ", main = "Anchura del pico", col = c("tan4", "steelblue1"), xlab = "")
+boxplot(flipper_length_mm~sex, data = ping_adelie, ylab = " ", main = "Longitud de la aleta", col = c("tan4", "steelblue1"), xlab = "")
+boxplot(body_mass_g~sex, data = ping_adelie, ylab = " ", main = "Masa corporal", col = c("tan4", "steelblue1"), xlab = "")
 ```
 
 ### Especie Chinstrap
 ```{r, echo=FALSE}
 par(plt = c(0.1,0.9,0.25,0.8))
 par(mfrow=c(2,2))
-boxplot(bill_length_mm~sex, data = ping_chinstrap, ylab = " ", main = "Longitud del pico", col = hcl.colors(3, "Red-Green"), xlab = "")
-boxplot(bill_depth_mm~sex, data = ping_chinstrap, ylab = " ", main = "Anchura del pico", col = hcl.colors(3, "Red-Green"), xlab = "")
-boxplot(flipper_length_mm~sex, data = ping_chinstrap, ylab = " ", main = "Longitud de la aleta", col = hcl.colors(3, "Red-Green"), xlab = "")
-boxplot(body_mass_g~sex, data = ping_chinstrap, ylab = " ", main = "Masa corporal", col = hcl.colors(3, "Red-Green"), xlab = "")
+boxplot(bill_length_mm~sex, data = ping_chinstrap, ylab = " ", main = "Longitud del pico", col = c('violetred3','springgreen'), xlab = "")
+boxplot(bill_depth_mm~sex, data = ping_chinstrap, ylab = " ", main = "Anchura del pico", col = c('violetred3','springgreen'), xlab = "")
+boxplot(flipper_length_mm~sex, data = ping_chinstrap, ylab = " ", main = "Longitud de la aleta", col = c('violetred3','springgreen'), xlab = "")
+boxplot(body_mass_g~sex, data = ping_chinstrap, ylab = " ", main = "Masa corporal", col = c('violetred3','springgreen'), xlab = "")
 ```
 
 ### Especie Gentoo
 ```{r, echo=FALSE}
 par(plt = c(0.1,0.9,0.25,0.8))
 par(mfrow=c(2,2))
-boxplot(bill_length_mm~sex, data = ping_gentoo, ylab = " ", main = "Longitud del pico", col = hcl.colors(3, "Cividis"), xlab = "")
-boxplot(bill_depth_mm~sex, data = ping_gentoo, ylab = " ", main = "Anchura del pico", col = hcl.colors(3, "Cividis"), xlab = "")
-boxplot(flipper_length_mm~sex, data = ping_gentoo, ylab = " ", main = "Longitud de la aleta", col = hcl.colors(3, "Cividis"), xlab = "")
-boxplot(body_mass_g~sex, data = ping_gentoo, ylab = " ", main = "Masa corporal", col = hcl.colors(3, "Cividis"), xlab = "")
+boxplot(bill_length_mm~sex, data = ping_gentoo, ylab = " ", main = "Longitud del pico", col = c("royalblue4","gold2"), xlab = "")
+boxplot(bill_depth_mm~sex, data = ping_gentoo, ylab = " ", main = "Anchura del pico", col = c("royalblue4","gold2"), xlab = "")
+boxplot(flipper_length_mm~sex, data = ping_gentoo, ylab = " ", main = "Longitud de la aleta", col = c("royalblue4","gold2"), xlab = "")
+boxplot(body_mass_g~sex, data = ping_gentoo, ylab = " ", main = "Masa corporal", col = c("royalblue4","gold2"), xlab = "")
 ```
 
 Como podemos observar, los machos de las tres especies són de mayores dimensiones que las hembras.
