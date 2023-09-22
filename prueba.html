@@ -105,6 +105,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#especie-gentoo" id="toc-especie-gentoo" class="nav-link" data-scroll-target="#especie-gentoo">Especie Gentoo</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#conclusión" id="toc-conclusión" class="nav-link" data-scroll-target="#conclusión">Conclusión</a></li>
   </ul>
 </nav>
 </div>
@@ -274,6 +275,9 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 </section>
 <section id="cruce-de-variables-cuantitativas-y-cualitativas" class="level1">
 <h1>Cruce de variables cuantitativas y cualitativas</h1>
+<p>Vamos a realizar comparaciones entre las variables cuantitativas y las de tipo factor, como son la especie, isla y sexo del pingüino.</p>
+<section id="comparación-por-especies" class="level2">
+<h2 class="anchored" data-anchor-id="comparación-por-especies">Comparación por especies</h2>
 <p>Comparemos las medias de las variables cuantitativas en función de cada especie.</p>
 <p>Para ello, dividamos el data frame por especies:</p>
 <div class="cell">
@@ -282,8 +286,6 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>ping_gentoo <span class="ot">=</span> datos[datos<span class="sc">$</span>species<span class="sc">==</span><span class="st">"Gentoo"</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Para hacer estas comparaciones realizaremos, para cada variable, un diagrama de cajas, al que le añadiremos la media muestral en forma de punto rojo, así como su valor numérico.</p>
-<section id="comparación-por-especies" class="level2">
-<h2 class="anchored" data-anchor-id="comparación-por-especies">Comparación por especies</h2>
 <section id="longitud-del-pico" class="level3">
 <h3 class="anchored" data-anchor-id="longitud-del-pico">Longitud del pico</h3>
 <p>Comparemos la longitud del pico de los pingüinos en función de la especie.</p>
@@ -371,6 +373,12 @@ Sd                   5.47       1.97       14.02        805.22</code></pre>
 <p><strong>Nota:</strong> las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población sin hacer ningun contraste de hipotesis.</p>
 </section>
 </section>
+</section>
+<section id="conclusión" class="level1">
+<h1>Conclusión</h1>
+<p>En resumen, hemos podido observar que, estas muestras están muy balanceadas respecto cada variable cualitativa menos en la isla en la que pertenecen, en la isla Torgersen hay muchas menos muestras recogidas (no es de extrañar dado que solo habitan ahí pingüinos Adelie).</p>
+<p>Respecto a las características antropométricas, la especie Gentoo presenta mayores dimensiones en comparación con las otras especies y, además, en todas las especies, el macho es más grande. Sin embargo, no se aprecian diferencias respecto a la zona geográfica en la que vivan.</p>
+<p><strong>Nota</strong>: Las conclusiones extraidas son suposiciones motivadas por el estudio descriptivo, no tenemos un gran número de muestras como para extrapolarlo a la población general.</p>
 </section>
 
 </main>

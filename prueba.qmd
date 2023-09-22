@@ -71,10 +71,10 @@ Realizamos un diagrama de sectores de las variables `species`, `island`, `sex` y
 ```{r, echo=FALSE}
 par(plt = c(0.08,0.9,0.25,0.8))
 par(mfrow=c(2,2))
-pie(table(datos$species), labels = paste0(names(table(datos$species)), " (", round(prop.table(table(datos$species)) * 100, 1), "%)"), col = hcl.colors(3, "Greens 3"), main = "Proporción de especies")
-pie(table(datos$island), labels = paste0(names(table(datos$island)), " (", round(prop.table(table(datos$island)) * 100, 1), "%)"), col = hcl.colors(3, "Blues 3"), main = "Proporción de cada isla")
-pie(table(datos$sex), labels = paste0(names(table(datos$sex)), " (", round(prop.table(table(datos$sex)) * 100, 1), "%)"), col = hcl.colors(3, "Fall"), main = "Sexo")
-pie(table(datos$year), labels = paste0(names(table(datos$year)), " (", round(prop.table(table(datos$year)) * 100, 1), "%)"), col = hcl.colors(3, "Mint"), main = "Año del experimento")
+pie(table(datos$species), labels = paste0(names(table(datos$species)), " (", round(prop.table(table(datos$species)) * 100, 1), "%)"), col = c("#004616", "#74C286", "white"), main = "Proporción de especies")
+pie(table(datos$island), labels = paste0(names(table(datos$island)), " (", round(prop.table(table(datos$island)) * 100, 1), "%)"), col = c("#00366C", "#79ABE2", "white"), main = "Proporción de cada isla")
+pie(table(datos$sex), labels = paste0(names(table(datos$sex)), " (", round(prop.table(table(datos$sex)) * 100, 1), "%)"), col = c("#3C5941", "#FBF2C4"), main = "Sexo")
+pie(table(datos$year), labels = paste0(names(table(datos$year)), " (", round(prop.table(table(datos$year)) * 100, 1), "%)"), col = c("#005D67", "#64A79A", "#E0F2E6"), main = "Año del experimento")
 ```
 
 
@@ -127,6 +127,10 @@ Por otro lado, se presenta una correlación moderadamente fuerte negativa (-0.58
 
 # Cruce de variables cuantitativas y cualitativas
 
+Vamos a realizar comparaciones entre las variables cuantitativas y las de tipo factor, como son la especie, isla y sexo del pingüino.
+
+
+## Comparación por especies
 
 Comparemos las medias de las variables cuantitativas en función de cada especie.
 
@@ -140,9 +144,6 @@ ping_gentoo = datos[datos$species=="Gentoo",]
 
 Para hacer estas comparaciones realizaremos, para cada variable, un diagrama de cajas, al que le añadiremos la media muestral en forma de punto rojo, así como su valor numérico.
 
-## Comparación por especies
-
-
 ### Longitud del pico
 
 Comparemos la longitud del pico de los pingüinos en función de la especie.
@@ -150,13 +151,12 @@ Comparemos la longitud del pico de los pingüinos en función de la especie.
 ```{r, echo=FALSE}
 boxplot(bill_length_mm ~ species, data = datos,
         xlab = "", ylab = "Longitud pico (mm)",
-        main = "Longitud del pico por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
+        main = "Longitud del pico por especie", col = c("#E5A9B4", "#D6E0FF", "#C2EFB4"), cex.axis=0.85)
 medias = c(mean(ping_adelie$bill_length_mm), mean(ping_chinstrap$bill_length_mm), 
                   mean(ping_gentoo$bill_length_mm))
 # añadimos medias
 points(x = 1:length(medias), y = medias, pch = 19, col = "red")
-text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
-     col = "white")
+text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7)
 ```
 
 Notemos que los pinguinos de especie `Adelie`, de media, tienen el pico más corto que las otras dos especies.
@@ -166,13 +166,12 @@ Notemos que los pinguinos de especie `Adelie`, de media, tienen el pico más cor
 ```{r, echo=FALSE}
 boxplot(bill_depth_mm ~ species, data = datos,
         xlab = "", ylab = "Ancho pico (mm)",
-        main = "Ancho del pico por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
+        main = "Ancho del pico por especie", col = c("#E5A9B4", "#D6E0FF", "#C2EFB4"), cex.axis=0.85)
 medias = c(mean(ping_adelie$bill_depth_mm), mean(ping_chinstrap$bill_depth_mm), 
                   mean(ping_gentoo$bill_depth_mm))
 # añadimos medias
 points(x = 1:length(medias), y = medias, pch = 19, col = "red")
-text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
-     col = "white")
+text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7)
 ```
 
 Notemos que los pinguinos de especie `Gentoo`, de media, tienen el pico menos ancho que las otras especies.
@@ -182,13 +181,12 @@ Notemos que los pinguinos de especie `Gentoo`, de media, tienen el pico menos an
 ```{r, echo=FALSE}
 boxplot(flipper_length_mm ~ species, data = datos,
         xlab = "", ylab = "Longitud aleta (mm)",
-        main = "Longitud de la aleta por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
+        main = "Longitud de la aleta por especie", col = c("#E5A9B4", "#D6E0FF", "#C2EFB4"), cex.axis=0.85)
 medias = c(mean(ping_adelie$flipper_length_mm), mean(ping_chinstrap$flipper_length_mm), 
                   mean(ping_gentoo$flipper_length_mm))
 # añadimos medias
 points(x = 1:length(medias), y = medias, pch = 19, col = "red")
-text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
-     col = "white")
+text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7)
 ```
 
 Notemos que los pinguinos de especie `Gentoo`, de media, tienen la aleta más larga que las otras dos especies.
@@ -198,13 +196,12 @@ Notemos que los pinguinos de especie `Gentoo`, de media, tienen la aleta más la
 ```{r, echo=FALSE}
 boxplot(body_mass_g ~ species, data = datos,
         xlab = "", ylab = "Masa corporal (g)",
-        main = "Masa corporal por especie", col = hcl.colors(4, "Peach"), cex.axis=0.85)
+        main = "Masa corporal por especie", col = c("#E5A9B4", "#D6E0FF", "#C2EFB4"), cex.axis=0.85)
 medias = c(mean(ping_adelie$body_mass_g), mean(ping_chinstrap$body_mass_g), 
                   mean(ping_gentoo$body_mass_g))
 # añadimos medias
 points(x = 1:length(medias), y = medias, pch = 19, col = "red")
-text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7,
-     col = "white")
+text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7)
 ```
 
 Notemos que los pingüinos de especie `Gentoo`, de media, tienen mayor masa corporal que las otras dos especies.
@@ -239,32 +236,55 @@ table(datos$sex, datos$species)
 ```{r, echo=FALSE}
 par(plt = c(0.1,0.9,0.25,0.8))
 par(mfrow=c(2,2))
-boxplot(bill_length_mm~sex, data = ping_adelie, ylab = " ", main = "Longitud del pico", col = c("tan4", "steelblue1"), xlab = "")
-boxplot(bill_depth_mm~sex, data = ping_adelie, ylab = " ", main = "Anchura del pico", col = c("tan4", "steelblue1"), xlab = "")
-boxplot(flipper_length_mm~sex, data = ping_adelie, ylab = " ", main = "Longitud de la aleta", col = c("tan4", "steelblue1"), xlab = "")
-boxplot(body_mass_g~sex, data = ping_adelie, ylab = " ", main = "Masa corporal", col = c("tan4", "steelblue1"), xlab = "")
+boxplot(bill_length_mm~sex, data = ping_adelie, ylab = " ", main = "Longitud del pico", col = c("#A36B2B", "#2686A0"), xlab = "", names = c("Hembra", "Macho"))
+boxplot(bill_depth_mm~sex, data = ping_adelie, ylab = " ", main = "Anchura del pico", col = c("#A36B2B", "#2686A0"), xlab = "", names = c("Hembra", "Macho"))
+boxplot(flipper_length_mm~sex, data = ping_adelie, ylab = " ", main = "Longitud de la aleta", col = c("#A36B2B", "#2686A0"), xlab = "", names = c("Hembra", "Macho"))
+boxplot(body_mass_g~sex, data = ping_adelie, ylab = " ", main = "Masa corporal", col = c("#A36B2B", "#2686A0"), xlab = "", names = c("Hembra", "Macho"))
 ```
 
 ### Especie Chinstrap
 ```{r, echo=FALSE}
 par(plt = c(0.1,0.9,0.25,0.8))
 par(mfrow=c(2,2))
-boxplot(bill_length_mm~sex, data = ping_chinstrap, ylab = " ", main = "Longitud del pico", col = c('violetred3','springgreen'), xlab = "")
-boxplot(bill_depth_mm~sex, data = ping_chinstrap, ylab = " ", main = "Anchura del pico", col = c('violetred3','springgreen'), xlab = "")
-boxplot(flipper_length_mm~sex, data = ping_chinstrap, ylab = " ", main = "Longitud de la aleta", col = c('violetred3','springgreen'), xlab = "")
-boxplot(body_mass_g~sex, data = ping_chinstrap, ylab = " ", main = "Masa corporal", col = c('violetred3','springgreen'), xlab = "")
+boxplot(bill_length_mm~sex, data = ping_chinstrap, ylab = " ", main = "Longitud del pico", col = c('#AB1F73','#007A00'), xlab = "", names = c("Hembra", "Macho"))
+boxplot(bill_depth_mm~sex, data = ping_chinstrap, ylab = " ", main = "Anchura del pico", col = c('#AB1F73','#007A00'), xlab = "", names = c("Hembra", "Macho"))
+boxplot(flipper_length_mm~sex, data = ping_chinstrap, ylab = " ", main = "Longitud de la aleta", col = c('#AB1F73','#007A00'), xlab = "", names = c("Hembra", "Macho"))
+boxplot(body_mass_g~sex, data = ping_chinstrap, ylab = " ", main = "Masa corporal", col = c('#AB1F73','#007A00'), xlab = "", names = c("Hembra", "Macho"))
 ```
 
 ### Especie Gentoo
 ```{r, echo=FALSE}
 par(plt = c(0.1,0.9,0.25,0.8))
 par(mfrow=c(2,2))
-boxplot(bill_length_mm~sex, data = ping_gentoo, ylab = " ", main = "Longitud del pico", col = c("royalblue4","gold2"), xlab = "")
-boxplot(bill_depth_mm~sex, data = ping_gentoo, ylab = " ", main = "Anchura del pico", col = c("royalblue4","gold2"), xlab = "")
-boxplot(flipper_length_mm~sex, data = ping_gentoo, ylab = " ", main = "Longitud de la aleta", col = c("royalblue4","gold2"), xlab = "")
-boxplot(body_mass_g~sex, data = ping_gentoo, ylab = " ", main = "Masa corporal", col = c("royalblue4","gold2"), xlab = "")
+boxplot(bill_length_mm~sex, data = ping_gentoo, ylab = " ", main = "Longitud del pico", col = c("royalblue4","gold2"), xlab = "", names = c("Hembra", "Macho"))
+boxplot(bill_depth_mm~sex, data = ping_gentoo, ylab = " ", main = "Anchura del pico", col = c("royalblue4","gold2"), xlab = "", names = c("Hembra", "Macho"))
+boxplot(flipper_length_mm~sex, data = ping_gentoo, ylab = " ", main = "Longitud de la aleta", col = c("royalblue4","gold2"), xlab = "", names = c("Hembra", "Macho"))
+boxplot(body_mass_g~sex, data = ping_gentoo, ylab = " ", main = "Masa corporal", col = c("royalblue4","gold2"), xlab = "", names = c("Hembra", "Macho"))
 ```
 
 Como podemos observar, los machos de las tres especies són de mayores dimensiones que las hembras.
 
 **Nota:** las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población sin hacer ningun contraste de hipotesis.
+
+
+
+
+
+# Conclusión
+
+En resumen, hemos podido observar que, estas muestras están muy balanceadas respecto cada variable cualitativa menos en la isla en la que pertenecen, en la isla Torgersen hay muchas menos muestras recogidas (no es de extrañar dado que solo habitan ahí pingüinos Adelie).
+
+Respecto a las características antropométricas, la especie Gentoo presenta mayores dimensiones en comparación con las otras especies y, además, en todas las especies, el macho es más grande. Sin embargo, no se aprecian diferencias respecto a la zona geográfica en la que vivan.
+
+**Nota**: Las conclusiones extraidas son suposiciones motivadas por el estudio descriptivo, no tenemos un gran número de muestras como para extrapolarlo a la población general. 
+
+
+
+
+
+
+
+
+
+
+
