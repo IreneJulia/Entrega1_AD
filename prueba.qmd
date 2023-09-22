@@ -122,7 +122,7 @@ nombres = c("Longitud pico", "Ancho pico", "Longitud aleta", "Masa corporal")
 corPlot(datos2, cex = 0.8,  main = "Matriz de correlación", labels = nombres)
 ```
 
-Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las alas de los pingüinos; es decir, a mayor masa corporal, mayor longitud de alas. Este hecho nos sugiere suponer que si hay una especie que tenga, en general, mayor peso, será porque el animal en sí es más grande.
+Cabe destacar la correlación fuerte positiva (valor de +0.87) entre la masa corporal y la longitud de las aletas de los pingüinos; es decir, a mayor masa corporal, mayor longitud de aletas. Este hecho nos sugiere suponer que si hay una especie que tenga, en general, mayor peso, será porque el animal en sí es más grande.
 
 También hay correlación moderadamente fuerte positiva (valores de +0.59 y +0.65) entre la longitud del pico y la masa corporal, y la longitud del pico y la longitud de la aleta.
 
@@ -178,7 +178,7 @@ points(x = 1:length(medias), y = medias, pch = 19, col = "red")
 text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7)
 ```
 
-Notemos que los pinguinos de especie `Gentoo`, de media, tienen el pico menos ancho que las otras especies.
+Observemos que los pinguinos de especie `Gentoo`, de media, tienen el pico menos ancho que las otras especies.
 
 ### Longitud de la aleta
 
@@ -193,7 +193,7 @@ points(x = 1:length(medias), y = medias, pch = 19, col = "red")
 text(x = 1:length(medias), y = medias, labels = round(medias, 3), pos = 1, cex = 0.7)
 ```
 
-Notemos que los pinguinos de especie `Gentoo`, de media, tienen la aleta más larga que las otras dos especies.
+Se puede ver que los pinguinos de especie `Gentoo`, de media, tienen la aleta más larga que las otras dos especies.
 
 ### Masa corporal
 
@@ -235,6 +235,7 @@ Notemos que, a simple vista, no hay mucha diferencia en la especie `Adelie` en f
 table(datos$sex, datos$species)
 ```
 
+
 ### Especie Adelie
 
 ```{r, echo=FALSE}
@@ -247,6 +248,7 @@ boxplot(body_mass_g~sex, data = ping_adelie, ylab = " ", main = "Masa corporal",
 ```
 
 ### Especie Chinstrap
+
 ```{r, echo=FALSE}
 par(plt = c(0.1,0.9,0.25,0.8))
 par(mfrow=c(2,2))
@@ -257,6 +259,7 @@ boxplot(body_mass_g~sex, data = ping_chinstrap, ylab = " ", main = "Masa corpora
 ```
 
 ### Especie Gentoo
+
 ```{r, echo=FALSE}
 par(plt = c(0.1,0.9,0.25,0.8))
 par(mfrow=c(2,2))
