@@ -15,6 +15,9 @@ datos <- data.frame(penguins)
 
 **Con lo que sabéis de R base, realizad un análisis exploratorio de datos y redactad un reporte con los hallazgos más importantes. No olvidéis agregar en el reporte el URL de vuestro repositorio de GitHub.**
 
+[Link del Repositorio de GitHub](https://github.com/IreneJulia/Entrega1_AD)
+
+
 # Descripción de los datos
 
 El data frame consta de 344 observaciones y 8 variables. Cada muestra representa un pingüino al que se le ha extraido la siguiente información:
@@ -55,7 +58,8 @@ datos$year = as.factor(datos$year)
 summary(datos)
 ```
 
-A continuación, mostremos una tabla de frecuencias absolutas que nos indique cuantas especies hay en cada isla:
+A continuación, mostremos una tabla de frecuencias absolutas que nos indique cuántas especies hay en cada isla:
+
 ```{r, echo=FALSE}
 table(datos$island, datos$species)
 ```
@@ -73,16 +77,16 @@ par(plt = c(0.08,0.9,0.25,0.8))
 par(mfrow=c(2,2))
 pie(table(datos$species), labels = paste0(names(table(datos$species)), " (", round(prop.table(table(datos$species)) * 100, 1), "%)"), col = c("#004616", "#74C286", "white"), main = "Proporción de especies")
 pie(table(datos$island), labels = paste0(names(table(datos$island)), " (", round(prop.table(table(datos$island)) * 100, 1), "%)"), col = c("#00366C", "#79ABE2", "white"), main = "Proporción de cada isla")
-pie(table(datos$sex), labels = paste0(names(table(datos$sex)), " (", round(prop.table(table(datos$sex)) * 100, 1), "%)"), col = c("#3C5941", "#FBF2C4"), main = "Sexo")
+pie(table(datos$sex), labels = paste0(c("Hembra", "Macho"), " (", round(prop.table(table(datos$sex)) * 100, 1), "%)"), col = c("#3C5941", "#FBF2C4"), main = "Sexo")
 pie(table(datos$year), labels = paste0(names(table(datos$year)), " (", round(prop.table(table(datos$year)) * 100, 1), "%)"), col = c("#005D67", "#64A79A", "#E0F2E6"), main = "Año del experimento")
 ```
 
 
 
-## Desripción de las variables cuantitativas
+## Descripción de las variables cuantitativas
 
 
-A continuación, realizaremos una tabla que nos de información numérica de estas cuatro variables cuantitativas, que corresponden con las características antropométricas de los pingüinos.
+A continuación, realizaremos una tabla que nos dé información numérica de estas cuatro variables cuantitativas, que corresponden con las características antropométricas de los pingüinos.
 
 
 ```{r, echo=FALSE}
@@ -262,9 +266,9 @@ boxplot(flipper_length_mm~sex, data = ping_gentoo, ylab = " ", main = "Longitud 
 boxplot(body_mass_g~sex, data = ping_gentoo, ylab = " ", main = "Masa corporal", col = c("royalblue4","gold2"), xlab = "", names = c("Hembra", "Macho"))
 ```
 
-Como podemos observar, los machos de las tres especies són de mayores dimensiones que las hembras.
+Como podemos observar, los machos de las tres especies son de mayores dimensiones que las hembras.
 
-**Nota:** las conclusiones extraidas sobre las medias no pueden extrapolarse a toda la población sin hacer ningun contraste de hipotesis.
+**Nota:** las conclusiones extraídas sobre las medias no pueden extrapolarse a toda la población sin hacer ningun contraste de hipotesis.
 
 
 
